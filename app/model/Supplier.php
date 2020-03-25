@@ -8,7 +8,8 @@ class Supplier extends Model
 {
     
 protected $fillable = [
-'id'
+'id','name','phone','email','facebook','address','inside_dhaka_charge',
+'outside_dhaka_charge','area_id','verified','supplier_category_id'
 ];
                     
 }
