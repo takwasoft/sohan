@@ -21,9 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/suppliers', 'SupplierController');                                               
                                                                                            
                                                
-Route::resource('/Categorys', 'CategoryController');                                               
+Route::resource('/Categories', 'CategoryController');                                               
                                                
-Route::resource('/SubCategorys', 'SubCategoryController');                                               
+Route::resource('/SubCategories', 'SubCategoryController');                                               
                                                
 Route::resource('/Brands', 'BrandController');                                               
                                                
