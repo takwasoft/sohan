@@ -36,9 +36,9 @@ protected $fillable = [
                                         err => {
                                             //start edit api.php
                                             fs.appendFile(
-                                                `routes/api.php`,
+                                                `routes/web.php`,
                                                `
-Route::apiResource('/${name}s', '${name}Controller');                                               
+Route::resource('/${name}s', '${name}Controller');                                               
                                                `,
                                                 err => {
                                                     fs.readFile("dev/controller.txt", "utf-8", (err, data) => {
