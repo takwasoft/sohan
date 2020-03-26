@@ -65,7 +65,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/suppliers', 'SupplierController');                                               
                                                                                            
                                                
-Route::resource('/categories', 'CategoryController');                                               
+Route::resource('/categories', 'CategoryController')->middleware('is_admin');                                               
                                                
 Route::resource('/subcategories', 'SubCategoryController');                                               
                                                
