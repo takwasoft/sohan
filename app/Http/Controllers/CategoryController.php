@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
+use App\model\ParentCategory;
 use DataTables;
 use Illuminate\Support\Facades\URL;
 
@@ -17,8 +18,11 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
+    
+
+        
         if ($request->ajax()) {
-        $data = Category::latest()->get();
+        $data = Category::latest()->with('ParentCategory')->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -42,11 +46,14 @@ class CategoryController extends Controller
                 $thead='<th>ID</th>
                 <th>Name</th>
                 <th>Image</th>
-                <th>Description</th>';
+                <th>Description</th>
+                <th>Parent Category</th>
+                ';
                 $columns="{data: 'id', name: 'id'},
                 {data: 'name', name: 'name'},
                 {data: 'img', name: 'img'},
-                {data: 'description', name: 'description'},";
+                {data: 'description', name: 'description'},
+                {data: 'parent_category.name', name: 'parent_category.name'},";
                 return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'categories','title'=>'Category List']);
     }
 
@@ -59,7 +66,15 @@ class CategoryController extends Controller
     {
         $action="categories";
         $name="Category";
-        $fields=[
+        $fields=[ 
+            [
+                "name"=>"parent_category_id",
+                "label"=>"Parent Category",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>ParentCategory::all(),
+                "optionlabel"=>"name"
+            ],
             [
                 "name"=>"name",
                 "label"=>"Name",
@@ -98,6 +113,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        
         $imageName = time().'.'.$request->img->getClientOriginalExtension();
         $request->img->move(public_path('images'), $imageName);
         $request['image'] = $imageName;
@@ -132,6 +148,15 @@ class CategoryController extends Controller
         $action="categories/$category->id";
         $name="Category";
         $fields=[
+            [
+                "name"=>"parent_category_id",
+                "label"=>"Parent Category",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>ParentCategory::all(),
+                "optionlabel"=>"name",
+                "value"=>$category->parent_category_id
+            ],
             [
                 "name"=>"name",
                 "label"=>"Name",

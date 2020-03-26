@@ -24,8 +24,16 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <!-- menu-open -->
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview  
+            @if(in_array(explode('/',request()->path())[0],["categories","subcategories","parentcategories"]))
+              menu-open
+            @endif
+          ">
+            <a href="#" class="nav-link 
+            @if(in_array(explode('/',request()->path())[0],["categories","subcategories","parentcategories"]))
+              active
+            @endif
+            ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Category
@@ -33,14 +41,32 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class=" nav-item ">
+                <a href="{{URL::to('/')}}/parentcategories" class="nav-link 
+                @if(explode('/',request()->path())[0]=="parentcategories")
+                    active
+                @endif
+                ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Parent Category</p>
+                </a>
+              </li>
               <li class="nav-item">
-                <a href="{{URL::to('/')}}/categories" class="nav-link active">
+                <a href="{{URL::to('/')}}/categories" class="nav-link 
+                @if(explode('/',request()->path())[0]=="categories")
+                    active
+                @endif
+                ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Category</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{URL::to('/')}}/subcategories" class="nav-link">
+                <a href="{{URL::to('/')}}/subcategories" class="nav-link
+                 @if(explode('/',request()->path())[0]=="subcategories")
+                    active
+                @endif
+                ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Subcategory</p>
                 </a>

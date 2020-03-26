@@ -8,7 +8,10 @@ class Category extends Model
 {
     
 protected $fillable = [
-'id','name','description','image','home'
+'id','name','description','image','home','parent_category_id'
 ];
+public function ParentCategory(){
+    return $this->belongsTo(ParentCategory::class);
+}
                     
 }
