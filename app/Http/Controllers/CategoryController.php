@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
-use App\Http\Resources\Category\CategoryResource;
+use DataTables;
+use Illuminate\Support\Facades\URL;
 
 class CategoryController extends Controller
 {
@@ -14,10 +15,39 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return  CategoryResource::collection(Category::all());
+        if ($request->ajax()) {
+        $data = Category::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        
+                           $btn = '<div class="btn-group"><a href="'.URL::to('/').'/categories/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                           <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+     
+                            return $btn;
+                    })
+                    ->addColumn('img', function($row){
+                        
+                        $btn = '<img style="width:60px" src="'.URL::to('/images/'.$row->image).'">';
+  
+                         return $btn;
+                 })
+                    ->rawColumns(['action'])
+                    ->escapeColumns([])
+                    ->make(true);
+        
+                }
+                $thead='<th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Description</th>';
+                $columns="{data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'img', name: 'img'},
+                {data: 'description', name: 'description'},";
+                return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'categories','title'=>'Category List']);
     }
 
     /**
@@ -27,7 +57,37 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $action="categories";
+        $name="Category";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            [
+                "name"=>"description",
+                "label"=>"Description",
+                "type"=>"textarea",
+                "required"=>true
+            ],
+            [
+                "name"=>"img",
+                "label"=>"Image",
+                "type"=>"file",
+                "required"=>true
+            ],
+            [
+                "name"=>"show_home",
+                "label"=>"Show On Homepage",
+                "type"=>"checkbox",
+                "required"=>false
+            ]
+            
+            ];
+           
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +98,16 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $var = Category::create([
+        $imageName = time().'.'.$request->img->getClientOriginalExtension();
+        $request->img->move(public_path('images'), $imageName);
+        $request['image'] = $imageName;
+        if($request['show_home']){
+            $request['home']=1;
+        }
+        Category::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new CategoryResource($var)
-        ], 201);
+        );
+        return redirect('/categories');
     }
 
     /**
@@ -52,9 +116,9 @@ class CategoryController extends Controller
      * @param  \App\Category  $var
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $var)
+    public function show(Category $category)
     {
-        return new CategoryResource($var);
+        return $category;
     }
 
     /**
@@ -63,9 +127,42 @@ class CategoryController extends Controller
      * @param  \App\Category  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $var)
+    public function edit(Category $category)
     {
-        //
+        $action="categories/$category->id";
+        $name="Category";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$category->name
+            ],
+            [
+                "name"=>"description",
+                "label"=>"Description",
+                "type"=>"textarea",
+                "required"=>true,
+                "value"=>$category->description
+            ],
+            [
+                "name"=>"img",
+                "label"=>"Image",
+                "type"=>"file",
+                "required"=>false
+            ],
+            [
+                "name"=>"show_home",
+                "label"=>"Show On Homepage",
+                "type"=>"checkbox",
+                "required"=>false,
+                "value"=>$category->home
+            ]
+            
+            ];
+           
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +172,23 @@ class CategoryController extends Controller
      * @param  \App\Category  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $var)
+    public function update(Request $request, Category $category)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new CategoryResource($var)
-        ], 201);
+        
+        if($request->img){
+            $imageName = time().'.'.$request->img->getClientOriginalExtension();
+        $request->img->move(public_path('images'), $imageName);
+        $request['image'] = $imageName;
+        }
+        $request['home']=0;
+        if($request['show_home']){
+            $request['home']=1;
+        }
+
+        $category->update($request->all());
+
+        return redirect('/categories');
+
     }
 
     /**
@@ -90,8 +197,9 @@ class CategoryController extends Controller
      * @param  \App\Category  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $var)
+    public function destroy(Category $category)
     {
-        $var->delete();
+        $category->delete();
+        return redirect('categories');
     }
 }

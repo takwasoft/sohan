@@ -1,9 +1,7 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.3-pre
-    </div>
+    <strong>Developed By &copy; 2020 <a href="http://www.takwasoft.com">Takwasoft</a>.</strong>
+
+    
   </footer>
 
   <!-- Control Sidebar -->
@@ -48,5 +46,6 @@
 <script src="{{asset('/')}}admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/')}}admin/dist/js/demo.js"></script>
+@yield('script')
 </body>
 </html>

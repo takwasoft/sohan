@@ -65,75 +65,73 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/suppliers', 'SupplierController');                                               
                                                                                            
                                                
-Route::resource('/Categories', 'CategoryController');                                               
+Route::resource('/categories', 'CategoryController');                                               
                                                
-Route::resource('/SubCategories', 'SubCategoryController');                                               
+Route::resource('/subcategories', 'SubCategoryController');                                               
                                                
-Route::resource('/Brands', 'BrandController');                                               
+Route::resource('/brands', 'BrandController');                                               
                                                
-Route::resource('/Suppliers', 'SupplierController');                                               
+Route::resource('/suppliers', 'SupplierController');                                               
                                                
-Route::resource('/Products', 'ProductController');                                               
+Route::resource('/products', 'ProductController');                                               
                                                
-Route::resource('/Areas', 'AreaController');                                               
+Route::resource('/areas', 'AreaController');                                               
                                                
-Route::resource('/SubDistricts', 'SubDistrictController');                                               
+Route::resource('/subDistricts', 'SubDistrictController');                                               
                                                
-Route::resource('/Districts', 'DistrictController');                                               
+Route::resource('/districts', 'DistrictController');                                               
                                                
-Route::resource('/Divisions', 'DivisionController');                                               
+Route::resource('/divisions', 'DivisionController');                                               
                                                
-Route::resource('/PaymentMethods', 'PaymentMethodController');                                               
+Route::resource('/paymentMethods', 'PaymentMethodController');                                               
                                                
-Route::resource('/ProductPaymentMethods', 'ProductPaymentMethodController');                                               
+Route::resource('/productPaymentMethods', 'ProductPaymentMethodController');                                               
                                                
                                                
                                                
-Route::resource('/ProductImages', 'ProductImageController');                                               
+Route::resource('/productImages', 'ProductImageController');                                               
                                                
-Route::resource('/Orders', 'OrderController');                                               
+Route::resource('/orders', 'OrderController');                                               
                                                
-Route::resource('/OrderLines', 'OrderLineController');                                               
+Route::resource('/orderLines', 'OrderLineController');                                               
                                                
-Route::resource('/OrderPaymentMehods', 'OrderPaymentMehodController');                                               
+Route::resource('/orderPaymentMehods', 'OrderPaymentMehodController');                                               
                                                
-Route::resource('/SupplierCategorys', 'SupplierCategoryController');                                               
+Route::resource('/supplierCategorys', 'SupplierCategoryController');                                               
                                                
-Route::resource('/Sizes', 'SizeController');                                               
+Route::resource('/sizes', 'SizeController');                                               
                                                
-Route::resource('/SizeProducts', 'SizeProductController');                                               
+Route::resource('/sizeProducts', 'SizeProductController');                                               
                                                
-Route::resource('/Colors', 'ColorController');                                               
+Route::resource('/colors', 'ColorController');                                               
                                                
-Route::resource('/ColorProducts', 'ColorProductController');                                               
+Route::resource('/colorProducts', 'ColorProductController');                                               
                                                
-Route::resource('/Offers', 'OfferController');                                               
+Route::resource('/offers', 'OfferController');                                               
                                                
-Route::resource('/OfferProducts', 'OfferProductController');                                               
+Route::resource('/offerProducts', 'OfferProductController');                                               
                                                
-Route::resource('/Sliders', 'SliderController');                                               
+Route::resource('/sliders', 'SliderController');                                               
                                                
-Route::resource('/Ads', 'AdController');                                               
+Route::resource('/ads', 'AdController');                                               
                                                
-Route::resource('/Boosts', 'BoostController');                                               
+Route::resource('/boosts', 'BoostController');                                               
                                                
-Route::resource('/Themes', 'ThemeController');                                               
+Route::resource('/themes', 'ThemeController');                                               
                                                
-Route::resource('/Buyers', 'BuyerController');                                               
+Route::resource('/buyers', 'BuyerController');                                               
                                                
-Route::resource('/ProductReviews', 'ProductReviewController');                                               
+Route::resource('/productreviews', 'ProductReviewController');                                               
                                                
-Route::resource('/SupplierReviews', 'SupplierReviewController');                                               
+Route::resource('/supplierreviews', 'SupplierReviewController');                                               
                                                
-Route::resource('/SupplierChats', 'SupplierChatController');                                               
+Route::resource('/supplierchats', 'SupplierChatController');                                               
                                                
-Route::resource('/SupplierFollows', 'SupplierFollowController');                                               
+Route::resource('/supplierfollows', 'SupplierFollowController');                                               
                                                
-Route::resource('/Tags', 'TagController');                                               
+Route::resource('/tags', 'TagController');                                               
                                                
-Route::resource('/ProductTags', 'ProductTagController');                                               
+Route::resource('/productTags', 'ProductTagController');                                               
                                                
-
-
-
-
+Route::resource('/parentcategories', 'ParentCategoryController');                                               
+                                               

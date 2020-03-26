@@ -12,6 +12,7 @@ name = process.argv[2];
 //php artisan make:controller PhotoController --resource
 //Route::apiResource('/messages', 'MessageController');
 exec(`php artisan make:model model/${name} -a`, (error, stdout, stderr) => {
+    console.log(error)
     exec(
         `php artisan make:controller ${name}Controller --resource`,
         (error, stdout, stderr) => {

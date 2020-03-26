@@ -2,30 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\SubCategory;
+use App\Model\ParentCategory;
 use Illuminate\Http\Request;
-use App\Http\Requests\SubCategoryRequest;
-use App\Http\Resources\SubCategory\SubCategoryResource;
-use App\model\Category;
+use App\Http\Requests\ParentCategoryRequest;
+use App\Http\Resources\ParentCategory\ParentCategoryResource;
 use DataTables;
 use Illuminate\Support\Facades\URL;
-
-class SubCategoryController extends Controller
+class ParentCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $data = SubCategory::latest()->with('Category')->get();
+        if (request()->ajax()) {
+            $data = ParentCategory::latest()->get();
                 return Datatables::of($data)
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
                             
-                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/subcategories/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/parentcategories/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
                                <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
          
                                 return $btn;
@@ -36,23 +34,35 @@ class SubCategoryController extends Controller
       
                              return $btn;
                      })
+                     ->addColumn('show', function($row){
+                            
+                            if($row->home==1)
+                            {
+                                return "<span class='badge bg-success'>Show</span>";
+                            }
+                            else{
+                                return "<span class='badge bg-danger'>Hidden</span>";
+                            }
+                 })
                         ->rawColumns(['action'])
                         ->escapeColumns([])
                         ->make(true);
             
-                   }
+                    }
                     $thead='<th>ID</th>
-                    <th>Category</th>
                     <th>Name</th>
                     <th>Image</th>
-                    <th>Description</th>';
+                    <th>Description</th>
+                    <th>Show On Home</th>
+                    ';
                     $columns="{data: 'id', name: 'id'},
-                    {data: 'category.name', name: 'category.name'},
                     {data: 'name', name: 'name'},
                     {data: 'img', name: 'img'},
-                    {data: 'description', name: 'description'},";
-                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'subcategories','title'=>'Category List']);
+                    {data: 'description', name: 'description'},
+                    {data: 'show', name: 'show'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'parentcategories','title'=>'Parent Category List']);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,17 +71,9 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $action="subcategories";
-        $name="Subcategory";
+        $action="parentcategories";
+        $name="Parent Category";
         $fields=[
-            [
-                "name"=>"category_id",
-                "label"=>"Category",
-                "type"=>"select",
-                "required"=>true,
-                "options"=>Category::all(),
-                "optionlabel"=>"name"
-            ],
             [
                 "name"=>"name",
                 "label"=>"Name",
@@ -108,7 +110,7 @@ class SubCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SubCategoryRequest $request)
+    public function store(ParentCategoryRequest $request)
     {
         $imageName = time().'.'.$request->img->getClientOriginalExtension();
         $request->img->move(public_path('images'), $imageName);
@@ -116,57 +118,48 @@ class SubCategoryController extends Controller
         if($request['show_home']){
             $request['home']=1;
         }
-        SubCategory::create(
+        ParentCategory::create(
             $request->all()
         );
-        return redirect('/subcategories');
+        return redirect('/parentcategories');
+      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\SubCategory  $var
+     * @param  \App\ParentCategory  $var
      * @return \Illuminate\Http\Response
      */
-    public function show(SubCategory $var)
+    public function show(ParentCategory $var)
     {
-        return new SubCategoryResource($var);
+        return new ParentCategoryResource($var);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SubCategory  $var
+     * @param  \App\ParentCategory  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubCategory $subcategory)
+    public function edit(ParentCategory $parentcategory)
     {
-      
-        $action="subcategories/$subcategory->id";
-        $name="Category";
+        $action="parentcategories/$parentcategory->id";
+        $name="Parent Category";
         $fields=[
-            [
-                "name"=>"category_id",
-                "label"=>"Category",
-                "type"=>"select",
-                "required"=>true,
-                "value"=>$subcategory->category_id,
-                "options"=>Category::all(),
-                "optionlabel"=>"name"
-            ],
             [
                 "name"=>"name",
                 "label"=>"Name",
                 "type"=>"text",
                 "required"=>true,
-                "value"=>$subcategory->name
+                "value"=>$parentcategory->name
             ],
             [
                 "name"=>"description",
                 "label"=>"Description",
                 "type"=>"textarea",
                 "required"=>true,
-                "value"=>$subcategory->description
+                "value"=>$parentcategory->description
             ],
             [
                 "name"=>"img",
@@ -179,7 +172,7 @@ class SubCategoryController extends Controller
                 "label"=>"Show On Homepage",
                 "type"=>"checkbox",
                 "required"=>false,
-                "value"=>$subcategory->home
+                "value"=>$parentcategory->home
             ]
             
             ];
@@ -191,10 +184,10 @@ class SubCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SubCategory  $var
+     * @param  \App\ParentCategory  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubCategory $subcategory)
+    public function update(Request $request, ParentCategory $parentcategory)
     {
         if($request->img){
             $imageName = time().'.'.$request->img->getClientOriginalExtension();
@@ -206,20 +199,20 @@ class SubCategoryController extends Controller
             $request['home']=1;
         }
 
-        $subcategory->update($request->all());
+        $parentcategory->update($request->all());
 
-        return redirect('/subcategories');
+        return redirect('/parentcategories');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SubCategory  $var
+     * @param  \App\ParentCategory  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubCategory $subcategory)
+    public function destroy(ParentCategory $parentcategory)
     {
-        $subcategory->delete();
-        return redirect('subcategories');
+        $parentcategory->delete();
+        return redirect('/parentcategories');
     }
 }
