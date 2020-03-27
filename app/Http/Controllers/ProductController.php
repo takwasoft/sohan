@@ -6,7 +6,8 @@ use App\Model\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\Product\ProductResource;
-
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class ProductController extends Controller
 {
     /**
@@ -14,10 +15,44 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return  ProductResource::collection(Product::all());
+        if ($request->ajax()) {
+            $data = Product::latest()->with('SubCategory')->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+                            
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/categories/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+         
+                                return $btn;
+                        })
+                        ->addColumn('img', function($row){
+                            
+                            $btn = '<img style="width:60px" src="'.URL::to('/images/'.$row->image).'">';
+      
+                             return $btn;
+                     })
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+            
+                    }
+                    $thead='<th>ID</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Parent Category</th>
+                    ';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'img', name: 'img'},
+                    {data: 'description', name: 'description'},
+                    {data: 'sub_category.name', name: 'sub_category.name'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'seller.master','ajax'=>'categories','title'=>'Category List']);
+        
+
     }
 
     /**

@@ -51,10 +51,11 @@ Route::get('/product-details',function (){
 
 
 //Admin
-Route::get('/admin',function (){
-    return view('admin.home.home');
-});
-
+// Route::get('/admin',function (){
+//     return view('admin.home.home');
+// });
+Route::get('/admin','AdminController@home');
+Route::get('/seller','SellerController@home');
 
 Auth::routes();
 
