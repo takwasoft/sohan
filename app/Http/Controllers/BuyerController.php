@@ -6,7 +6,9 @@ use App\Model\Buyer;
 use Illuminate\Http\Request;
 use App\Http\Requests\BuyerRequest;
 use App\Http\Resources\Buyer\BuyerResource;
-
+use App\Model\Area;
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class BuyerController extends Controller
 {
     /**
@@ -14,10 +16,38 @@ class BuyerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return  BuyerResource::collection(Buyer::all());
+        if ($request->ajax()) {
+            $data =Buyer::latest()->with('Area')->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/buyers/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                   }
+                    $thead='<th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Facebook_URL</th>
+                    <th>Address</th>
+                    <th>Area</th>';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'facebook', name: 'facebook'},
+                    {data: 'address', name: 'address'},
+                    {data: 'area.name', name: 'area.name'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'buyers','title'=>' Buyer List']);
     }
 
     /**
@@ -27,7 +57,44 @@ class BuyerController extends Controller
      */
     public function create()
     {
-        //
+        $action="buyers";
+        $name="Buyer";
+        $fields=[
+            [
+                "name"=>"area_id",
+                "label"=>"Area",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>Area::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            [
+                "name"=>"phone",
+                "label"=>"Phone",
+                "type"=>"text",
+                "required"=>true
+            ],
+            [
+                "name"=>"facebook",
+                "label"=>"Facebook_URL",
+                "type"=>"text",
+                "required"=>true
+            ],
+            [
+                "name"=>"address",
+                "label"=>"Adress",
+                "type"=>"text",
+                "required"=>true
+            ]
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +105,10 @@ class BuyerController extends Controller
      */
     public function store(BuyerRequest $request)
     {
-        $var = Buyer::create([
+        Buyer::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new BuyerResource($var)
-        ], 201);
+        );
+        return redirect('/buyers');
     }
 
     /**
@@ -63,9 +128,52 @@ class BuyerController extends Controller
      * @param  \App\Buyer  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(Buyer $var)
+    public function edit(Buyer $buyer)
     {
-        //
+        $action="buyers/$buyer->id";
+        $name="Buyer";
+        $fields=[
+            [
+                "name"=>"area_id",
+                "label"=>"Area",
+                "type"=>"select",
+                "required"=>true,
+                "value"=>$buyer->area_id,
+                "options"=>Area::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$buyer->name
+            ],
+            [
+                "name"=>"phone",
+                "label"=>"Phone",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$buyer->phone
+            ],
+            [
+                "name"=>"facebook",
+                "label"=>"Facebook_URL",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$buyer->facebook
+            ],
+            [
+                "name"=>"address",
+                "label"=>"Adress",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$buyer->address
+            ]
+            
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +183,10 @@ class BuyerController extends Controller
      * @param  \App\Buyer  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buyer $var)
+    public function update(Request $request, Buyer $buyer)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new BuyerResource($var)
-        ], 201);
+        $buyer->update($request->all());
+        return redirect('/buyers');
     }
 
     /**
@@ -90,8 +195,9 @@ class BuyerController extends Controller
      * @param  \App\Buyer  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buyer $var)
+    public function destroy(Buyer $buyer)
     {
-        $var->delete();
+        $buyer->delete();
+        return redirect('/buyers');
     }
 }

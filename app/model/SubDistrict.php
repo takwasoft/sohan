@@ -10,5 +10,7 @@ class SubDistrict extends Model
 protected $fillable = [
 'id','name','district_id'
 ];
-                    
+public function District(){
+    return $this->belongsTo(District::class);
+}                 
 }

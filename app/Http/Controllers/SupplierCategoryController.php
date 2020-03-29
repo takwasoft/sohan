@@ -6,7 +6,8 @@ use App\Model\SupplierCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\SupplierCategoryRequest;
 use App\Http\Resources\SupplierCategory\SupplierCategoryResource;
-
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class SupplierCategoryController extends Controller
 {
     /**
@@ -16,8 +17,30 @@ class SupplierCategoryController extends Controller
      */
     public function index()
     {
-        //
-        return  SupplierCategoryResource::collection(SupplierCategory::all());
+        if (request()->ajax()) {
+            $data = SupplierCategory::latest()->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/supplierCategories/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                    }
+                    $thead='<th>ID</th>
+                    <th>Name</th>
+                    <th>Details</th>
+                    ';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'}, 
+                    {data: 'details', name: 'details'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'supplierCategories','title'=>'SupplierCategory List']);
     }
 
     /**
@@ -27,7 +50,24 @@ class SupplierCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $action="supplierCategories";
+        $name="SupplierCategory";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            [
+                "name"=>"details",
+                "label"=>"Details",
+                "type"=>"textarea",
+                "required"=>true
+            ],
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +78,10 @@ class SupplierCategoryController extends Controller
      */
     public function store(SupplierCategoryRequest $request)
     {
-        $var = SupplierCategory::create([
+        SupplierCategory::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new SupplierCategoryResource($var)
-        ], 201);
+        );
+        return redirect('/supplierCategories');
     }
 
     /**
@@ -63,9 +101,29 @@ class SupplierCategoryController extends Controller
      * @param  \App\SupplierCategory  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(SupplierCategory $var)
+    public function edit(SupplierCategory $supplierCategory)
     {
-        //
+        $action="supplierCategories/$supplierCategory->id";
+        $name="SupplierCategory";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>false,
+                "value"=>$supplierCategory->name
+            ],
+            [
+                "name"=>"details",
+                "label"=>"Details",
+                "type"=>"textarea",
+                "required"=>false,
+                "value"=>$supplierCategory->details
+            ]
+
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +133,10 @@ class SupplierCategoryController extends Controller
      * @param  \App\SupplierCategory  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SupplierCategory $var)
+    public function update(Request $request, SupplierCategory $supplierCategory)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new SupplierCategoryResource($var)
-        ], 201);
+        $supplierCategory->update($request->all());
+        return redirect('/supplierCategories');
     }
 
     /**
@@ -90,8 +145,10 @@ class SupplierCategoryController extends Controller
      * @param  \App\SupplierCategory  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SupplierCategory $var)
+    public function destroy(SupplierCategory $supplierCategory)
     {
-        $var->delete();
+
+        $supplierCategory->delete();
+        return redirect('/supplierCategories');
     }
 }

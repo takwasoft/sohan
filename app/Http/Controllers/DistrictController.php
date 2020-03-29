@@ -6,6 +6,9 @@ use App\Model\District;
 use Illuminate\Http\Request;
 use App\Http\Requests\DistrictRequest;
 use App\Http\Resources\District\DistrictResource;
+use App\model\Division;
+use DataTables;
+use Illuminate\Support\Facades\URL;
 
 class DistrictController extends Controller
 {
@@ -14,10 +17,32 @@ class DistrictController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return  DistrictResource::collection(District::all());
+        if ($request->ajax()) {
+            $data = District::latest()->with('Division')->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/districts/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                   }
+                    $thead='<th>ID</th>
+                    <th>District</th>
+                    <th>Name</th>';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'division.name', name: 'division.name'},
+                    {data: 'name', name: 'name'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'districts','title'=>'District List']);
     }
 
     /**
@@ -27,7 +52,26 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        //
+        $action="districts";
+        $name="District";
+        $fields=[
+            [
+                "name"=>"division_id",
+                "label"=>"Division",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>Division::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"District Name",
+                "type"=>"text",
+                "required"=>true
+            ]
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +82,10 @@ class DistrictController extends Controller
      */
     public function store(DistrictRequest $request)
     {
-        $var = District::create([
+       District::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new DistrictResource($var)
-        ], 201);
+        );
+        return redirect('/districts');
     }
 
     /**
@@ -63,9 +105,30 @@ class DistrictController extends Controller
      * @param  \App\District  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(District $var)
+    public function edit(District $district)
     {
-        //
+        $action="districts/$district->id";
+        $name="District";
+        $fields=[
+            [
+                "name"=>"division_id",
+                "label"=>"Division",
+                "type"=>"select",
+                "required"=>true,
+                "value"=>$district->division_id,
+                "options"=>Division::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$district->name
+            ],
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +138,10 @@ class DistrictController extends Controller
      * @param  \App\District  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, District $var)
+    public function update(Request $request, District $district)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new DistrictResource($var)
-        ], 201);
+        $district->update($request->all());
+        return redirect('/districts');
     }
 
     /**
@@ -90,8 +150,9 @@ class DistrictController extends Controller
      * @param  \App\District  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(District $var)
+    public function destroy(District $district)
     {
-        $var->delete();
+        $district->delete();
+        return redirect('/districts');
     }
 }

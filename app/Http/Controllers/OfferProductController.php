@@ -6,7 +6,10 @@ use App\Model\OfferProduct;
 use Illuminate\Http\Request;
 use App\Http\Requests\OfferProductRequest;
 use App\Http\Resources\OfferProduct\OfferProductResource;
-
+use App\Model\Product;
+use App\Model\Offer;
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class OfferProductController extends Controller
 {
     /**
@@ -14,10 +17,32 @@ class OfferProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return  OfferProductResource::collection(OfferProduct::all());
+        if ($request->ajax()) {
+            $data = OfferProduct::latest()->with('Offer')->with('Product')->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/offerProducts/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                   }
+                    $thead='<th>ID</th>
+                    <th>Product</th>
+                    <th>Offer</th>';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'offer.title', name: 'offer.title'},
+                    {data: 'product.name', name: 'product.name'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'offerProducts','title'=>'Offer Product List']);
     }
 
     /**
@@ -27,7 +52,29 @@ class OfferProductController extends Controller
      */
     public function create()
     {
-        //
+        $action="offerProducts";
+        $name="Offer Product";
+        $fields=[
+            [
+                "name"=>"product_id",
+                "label"=>"Product",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>Product::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"offer_id",
+                "label"=>"Offer",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>Offer::all(),
+                "optionlabel"=>"title"
+            ],
+            
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +85,10 @@ class OfferProductController extends Controller
      */
     public function store(OfferProductRequest $request)
     {
-        $var = OfferProduct::create([
+        OfferProduct::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new OfferProductResource($var)
-        ], 201);
+        );
+        return redirect('/offerProducts');
     }
 
     /**
@@ -63,9 +108,33 @@ class OfferProductController extends Controller
      * @param  \App\OfferProduct  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(OfferProduct $var)
+    public function edit(OfferProduct $offerProduct)
     {
-        //
+        
+        $action="offerProducts/$offerProduct->id";
+        $name="Offer Product";
+        $fields=[
+            [
+                "name"=>"product_id",
+                "label"=>"Product",
+                "type"=>"select",
+                "required"=>false,
+                "value"=>$offerProduct->product_id,
+                "options"=>Product::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"offer_id",
+                "label"=>"Offer",
+                "type"=>"select",
+                "required"=>false,
+                "value"=>$offerProduct->offer_id,
+                "options"=>Offer::all(),
+                "optionlabel"=>"title"
+            ]
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +144,11 @@ class OfferProductController extends Controller
      * @param  \App\OfferProduct  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OfferProduct $var)
+    public function update(Request $request, OfferProduct $offerProduct)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new OfferProductResource($var)
-        ], 201);
+        $offerProduct->update($request->all());
+
+        return redirect('/offerProducts');
     }
 
     /**
@@ -90,8 +157,9 @@ class OfferProductController extends Controller
      * @param  \App\OfferProduct  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OfferProduct $var)
+    public function destroy(OfferProduct $offerProduct)
     {
-        $var->delete();
+        $offerProduct->delete();
+        return redirect('/offerProducts');
     }
 }

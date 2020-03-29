@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Product;
+use App\Model\Brand;
+use App\Model\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\Product\ProductResource;
@@ -18,22 +20,17 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Product::latest()->with('SubCategory')->get();
+            $data = Product::latest()->with('SubCategory')->with('Brand')->get();
                 return Datatables::of($data)
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
                             
-                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/categories/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/products/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
                                <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
          
                                 return $btn;
                         })
-                        ->addColumn('img', function($row){
-                            
-                            $btn = '<img style="width:60px" src="'.URL::to('/images/'.$row->image).'">';
-      
-                             return $btn;
-                     })
+                        
                         ->rawColumns(['action'])
                         ->escapeColumns([])
                         ->make(true);
@@ -41,16 +38,24 @@ class ProductController extends Controller
                     }
                     $thead='<th>ID</th>
                     <th>Name</th>
-                    <th>Image</th>
+                    <th>Code</th>
+                    <th>Price</th>
+                    <th>Discount</th>
                     <th>Description</th>
-                    <th>Parent Category</th>
+                    <th>Duration</th>
+                    <th>Category</th>
+                    <th>Brand</th>
                     ';
                     $columns="{data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'img', name: 'img'},
+                    {data: 'code', name: 'code'},
+                    {data: 'price', name: 'price'},
+                    {data: 'discount', name: 'discount'},
                     {data: 'description', name: 'description'},
-                    {data: 'sub_category.name', name: 'sub_category.name'},";
-                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'seller.master','ajax'=>'categories','title'=>'Category List']);
+                    {data: 'duration', name: 'duration'},
+                    {data: 'sub_category.name', name: 'sub_category.name'},
+                    {data: 'brand.name', name: 'brand.name'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'seller.master','ajax'=>'products','title'=>'Product List']);
         
 
     }
@@ -62,7 +67,64 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $action="products";
+        $name="Product";
+        $fields=[
+            [
+                "name"=>"sub_category_id",
+                "label"=>"Category",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>SubCategory::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"brand_id",
+                "label"=>"Brand",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>Brand::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            [
+                "name"=>"code",
+                "label"=>"Code",
+                "type"=>"text",
+                "required"=>true
+            ],
+            [
+                "name"=>"price",
+                "label"=>"Price",
+                "type"=>"number",
+                "required"=>true
+            ],
+            [
+                "name"=>"discount",
+                "label"=>"Discount",
+                "type"=>"number",
+                "required"=>true
+            ],
+            [
+                "name"=>"description",
+                "label"=>"Description",
+                "type"=>"textarea",
+                "required"=>true
+            ],
+            [
+                "name"=>"duration",
+                "label"=>"Duration",
+                "type"=>"number",
+                "required"=>true
+            ]
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -73,12 +135,10 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $var = Product::create([
+        Product::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new ProductResource($var)
-        ], 201);
+        );
+        return redirect('/products');
     }
 
     /**
@@ -98,9 +158,74 @@ class ProductController extends Controller
      * @param  \App\Product  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $var)
+    public function edit(Product $product)
     {
-        //
+        $action="products/$product->id";
+        $name="Product";
+        $fields=[
+            [
+                "name"=>"sub_category_id",
+                "label"=>"Category",
+                "type"=>"select",
+                "required"=>false,
+                "value"=>$product->sub_category_id,
+                "options"=>SubCategory::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"brand_id",
+                "label"=>"Brand",
+                "type"=>"select",
+                "required"=>false,
+                "value"=>$product->brand_id,
+                "options"=>Brand::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>false,
+                "value"=>$product->name
+            ],
+            [
+                "name"=>"code",
+                "label"=>"Code",
+                "type"=>"text",
+                "required"=>false,
+                "value"=>$product->code
+            ],
+            [
+                "name"=>"price",
+                "label"=>"Price",
+                "type"=>"number",
+                "required"=>false,
+                "value"=>$product->price
+            ],
+            [
+                "name"=>"discount",
+                "label"=>"Discount",
+                "type"=>"number",
+                "required"=>false,
+                "value"=>$product->discount
+            ],
+            [
+                "name"=>"description",
+                "label"=>"Description",
+                "type"=>"textarea",
+                "required"=>false,
+                "value"=>$product->description
+            ],
+            [
+                "name"=>"duration",
+                "label"=>"Duration",
+                "type"=>"number",
+                "required"=>false, 
+                "value"=>$product->duration
+            ]
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -110,13 +235,10 @@ class ProductController extends Controller
      * @param  \App\Product  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $var)
+    public function update(Request $request, Product $product)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new ProductResource($var)
-        ], 201);
+        $product->update($request->all());
+        return redirect('/products');
     }
 
     /**
@@ -125,8 +247,9 @@ class ProductController extends Controller
      * @param  \App\Product  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $var)
+    public function destroy(Product $product)
     {
-        $var->delete();
+        $product->delete();
+        return redirect('/products');
     }
 }

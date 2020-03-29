@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Model\SubDistrict;
+use App\Model\District;
 use Illuminate\Http\Request;
 use App\Http\Requests\SubDistrictRequest;
 use App\Http\Resources\SubDistrict\SubDistrictResource;
-
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class SubDistrictController extends Controller
 {
     /**
@@ -14,10 +16,32 @@ class SubDistrictController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return  SubDistrictResource::collection(SubDistrict::all());
+        if ($request->ajax()) {
+            $data = SubDistrict::latest()->with('District')->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/subDistricts/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                   }
+                    $thead='<th>ID</th>
+                    <th>District</th>
+                    <th>Name</th>';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'district.name', name: 'district.name'},
+                    {data: 'name', name: 'name'},";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'subDistricts','title'=>' SubDistrict List']);
     }
 
     /**
@@ -27,7 +51,27 @@ class SubDistrictController extends Controller
      */
     public function create()
     {
-        //
+
+        $action="subDistricts";
+        $name="SubDistrict";
+        $fields=[
+            [
+                "name"=>"district_id",
+                "label"=>"District",
+                "type"=>"select",
+                "required"=>true,
+                "options"=>District::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"SubDistrict",
+                "type"=>"text",
+                "required"=>true
+            ]
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +82,10 @@ class SubDistrictController extends Controller
      */
     public function store(SubDistrictRequest $request)
     {
-        $var = SubDistrict::create([
+        SubDistrict::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new SubDistrictResource($var)
-        ], 201);
+        );
+        return redirect('/subDistricts');
     }
 
     /**
@@ -63,9 +105,30 @@ class SubDistrictController extends Controller
      * @param  \App\SubDistrict  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubDistrict $var)
+    public function edit(SubDistrict $subDistrict)
     {
-        //
+        $action="subDistricts/$subDistrict->id";
+        $name="SubDistrict";
+        $fields=[
+            [
+                "name"=>"division_id",
+                "label"=>"Division",
+                "type"=>"select",
+                "required"=>true,
+                "value"=>$subDistrict->district_id,
+                "options"=>District::all(),
+                "optionlabel"=>"name"
+            ],
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$subDistrict->name
+            ],
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +138,10 @@ class SubDistrictController extends Controller
      * @param  \App\SubDistrict  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubDistrict $var)
+    public function update(Request $request, SubDistrict $subDistrict)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new SubDistrictResource($var)
-        ], 201);
+        $subDistrict->update($request->all());
+        return redirect('/subDistricts');
     }
 
     /**
@@ -90,8 +150,9 @@ class SubDistrictController extends Controller
      * @param  \App\SubDistrict  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubDistrict $var)
+    public function destroy(SubDistrict $subDistrict)
     {
-        $var->delete();
+        $subDistrict->delete();
+        return redirect('/subDistricts');
     }
 }

@@ -6,6 +6,8 @@ use App\Model\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\TagRequest;
 use App\Http\Resources\Tag\TagResource;
+use DataTables;
+use Illuminate\Support\Facades\URL;
 
 class TagController extends Controller
 {
@@ -16,8 +18,28 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
-        return  TagResource::collection(Tag::all());
+        if (request()->ajax()) {
+            $data = Tag::latest()->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/tags/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                    }
+                    $thead='<th>ID</th>
+                    <th>Name</th>
+                    ';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'}, ";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'tags','title'=>'Tag List']);
     }
 
     /**
@@ -27,7 +49,18 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        $action="tags";
+        $name="Tag";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +71,10 @@ class TagController extends Controller
      */
     public function store(TagRequest $request)
     {
-        $var = Tag::create([
+        Tag::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new TagResource($var)
-        ], 201);
+        );
+        return redirect('/tags');
     }
 
     /**
@@ -63,9 +94,22 @@ class TagController extends Controller
      * @param  \App\Tag  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $var)
+    public function edit(Tag $tag)
     {
-        //
+        $action="tags/$tag->id";
+        $name="Tag";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$tag->name
+            ],
+
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +119,10 @@ class TagController extends Controller
      * @param  \App\Tag  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $var)
+    public function update(Request $request, Tag $tag)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new TagResource($var)
-        ], 201);
+        $tag->update($request->all());
+        return redirect('/tags');
     }
 
     /**
@@ -90,8 +131,9 @@ class TagController extends Controller
      * @param  \App\Tag  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $var)
+    public function destroy(Tag $tag)
     {
-        $var->delete();
+        $tag->delete();
+        return redirect('/tags');
     }
 }

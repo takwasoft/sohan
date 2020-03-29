@@ -6,7 +6,8 @@ use App\Model\Color;
 use Illuminate\Http\Request;
 use App\Http\Requests\ColorRequest;
 use App\Http\Resources\Color\ColorResource;
-
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class ColorController extends Controller
 {
     /**
@@ -16,8 +17,27 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
-        return  ColorResource::collection(Color::all());
+        if (request()->ajax()) {
+            $data = Color::latest()->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/colors/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                    }
+                    $thead='<th>ID</th>
+                    <th>Name</th>';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'}, ";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'colors','title'=>'Colors List']);
     }
 
     /**
@@ -27,7 +47,18 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+        $action="colors";
+        $name="Color";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +69,10 @@ class ColorController extends Controller
      */
     public function store(ColorRequest $request)
     {
-        $var = Color::create([
+        Color::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new ColorResource($var)
-        ], 201);
+        );
+        return redirect('/colors');
     }
 
     /**
@@ -63,9 +92,22 @@ class ColorController extends Controller
      * @param  \App\Color  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $var)
+    public function edit(Color $color)
     {
-        //
+        $action="colors/$color->id";
+        $name="Color";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$color->name
+            ],
+
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +117,10 @@ class ColorController extends Controller
      * @param  \App\Color  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $var)
+    public function update(Request $request, Color $color)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new ColorResource($var)
-        ], 201);
+        $color->update($request->all());
+        return redirect('/colors');
     }
 
     /**
@@ -90,8 +129,9 @@ class ColorController extends Controller
      * @param  \App\Color  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $var)
+    public function destroy(Color $color)
     {
-        $var->delete();
+        $color->delete();
+        return redirect('/colors');
     }
 }

@@ -15,5 +15,7 @@ protected $fillable = [
 public function SubCategory(){
     return $this->belongsTo(SubCategory::class);
 }
-                    
+public function Brand(){
+    return $this->belongsTo(Brand::class);
+}             
 }

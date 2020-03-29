@@ -6,7 +6,8 @@ use App\Model\Size;
 use Illuminate\Http\Request;
 use App\Http\Requests\SizeRequest;
 use App\Http\Resources\Size\SizeResource;
-
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class SizeController extends Controller
 {
     /**
@@ -16,8 +17,28 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //
-        return  SizeResource::collection(Size::all());
+        if (request()->ajax()) {
+            $data = Size::latest()->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/sizes/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                    }
+                    $thead='<th>ID</th>
+                    <th>Name</th>
+                    ';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'}, ";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'sizes','title'=>'Size List']);
     }
 
     /**
@@ -27,7 +48,18 @@ class SizeController extends Controller
      */
     public function create()
     {
-        //
+        $action="sizes";
+        $name="Size";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +70,10 @@ class SizeController extends Controller
      */
     public function store(SizeRequest $request)
     {
-        $var = Size::create([
+        Size::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new SizeResource($var)
-        ], 201);
+        );
+        return redirect('/sizes');
     }
 
     /**
@@ -63,9 +93,21 @@ class SizeController extends Controller
      * @param  \App\Size  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(Size $var)
+    public function edit(Size $size)
     {
-        //
+        $action="sizes/$size->id";
+        $name="Size";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$size->name
+            ],
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +117,10 @@ class SizeController extends Controller
      * @param  \App\Size  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $var)
+    public function update(Request $request, Size $size)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new SizeResource($var)
-        ], 201);
+        $size->update($request->all());
+        return redirect('/sizes');
     }
 
     /**
@@ -90,8 +129,9 @@ class SizeController extends Controller
      * @param  \App\Size  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Size $var)
+    public function destroy(Size $size)
     {
-        $var->delete();
+        $size->delete();
+        return redirect('/sizes');
     }
 }

@@ -6,7 +6,8 @@ use App\Model\Division;
 use Illuminate\Http\Request;
 use App\Http\Requests\DivisionRequest;
 use App\Http\Resources\Division\DivisionResource;
-
+use DataTables;
+use Illuminate\Support\Facades\URL;
 class DivisionController extends Controller
 {
     /**
@@ -16,8 +17,28 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
-        return  DivisionResource::collection(Division::all());
+        if (request()->ajax()) {
+            $data = Division::latest()->get();
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+
+                               $btn = '<div class="btn-group"><a href="'.URL::to('/').'/divisions/'.$row->id.'/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                               <button onclick="deleteData('.$row->id.')" class="btn btn-sm btn-outline-danger">Delete</button></div>';
+
+                                return $btn;
+                        })
+                        ->rawColumns(['action'])
+                        ->escapeColumns([])
+                        ->make(true);
+
+                    }
+                    $thead='<th>ID</th>
+                    <th>Name</th>
+                    ';
+                    $columns="{data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'}, ";
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'divisions','title'=>'Division List']);
     }
 
     /**
@@ -27,7 +48,18 @@ class DivisionController extends Controller
      */
     public function create()
     {
-        //
+        $action="divisions";
+        $name="Division";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true
+            ],
+            ];
+
+        return view('admin.form.create',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -38,12 +70,10 @@ class DivisionController extends Controller
      */
     public function store(DivisionRequest $request)
     {
-        $var = Division::create([
+        Division::create(
             $request->all()
-        ]);
-        return response([
-            'data' => new DivisionResource($var)
-        ], 201);
+        );
+        return redirect('/divisions');
     }
 
     /**
@@ -63,9 +93,22 @@ class DivisionController extends Controller
      * @param  \App\Division  $var
      * @return \Illuminate\Http\Response
      */
-    public function edit(Division $var)
+    public function edit(Division $division)
     {
-        //
+        $action="divisions/$division->id";
+        $name="Division";
+        $fields=[
+            [
+                "name"=>"name",
+                "label"=>"Name",
+                "type"=>"text",
+                "required"=>true,
+                "value"=>$division->name
+            ],
+
+            ];
+
+        return view('admin.form.edit',["action"=>$action,"name"=>$name,"fields"=>$fields]);
     }
 
     /**
@@ -75,13 +118,10 @@ class DivisionController extends Controller
      * @param  \App\Division  $var
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Division $var)
+    public function update(Request $request, Division $division)
     {
-        //
-        $var->update($request->all());
-        return response([
-            'data' => new DivisionResource($var)
-        ], 201);
+        $division->update($request->all());
+        return redirect('/divisions');
     }
 
     /**
@@ -90,8 +130,9 @@ class DivisionController extends Controller
      * @param  \App\Division  $var
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Division $var)
+    public function destroy(Division $division)
     {
-        $var->delete();
+        $division->delete();
+        return redirect('/divisions');
     }
 }
