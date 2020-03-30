@@ -13,5 +13,8 @@ protected $fillable = [
 public function ParentCategory(){
     return $this->belongsTo(ParentCategory::class);
 }
+public function SubCategories(){
+    return $this->hasMany(SubCategory::class);
+}
                     
 }

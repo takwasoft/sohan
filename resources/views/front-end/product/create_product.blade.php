@@ -56,113 +56,47 @@
 					<a class="list-group-item active">
 						<i class="fa fa-bars" aria-hidden="true"></i>Parent-Categories
 					</a>
-                <li><a href="#" class="list-group-item megamenu-caret">
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>Clothing</a>
+                    @foreach ($parentCategories as $parent)
+                        
+                    
+                <li onclick="chooseParent(this)"><a href="#" class="list-group-item megamenu-caret" >
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>{{$parent->name}}</a>
 
-                        <ul style='background-color:#fff;border:none;display:block' class='sub-menu1'>
-                            <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                        <ul style='background-color:#fff;border:none;' class='sub-menu1'>
+                            <li><a href="#"  class="list-group-item active">Category</a>
                                 <ul>
-                                    <li><a class="list-group-item megamenu-caret" href="#">shirt</a></li>
-                                    <li><a href="#" class="list-group-item megamenu-caret">pant</a>
-                                    
-                                        <ul class='sub-menu2' style="background-color:#fff;border:none;display:block">
+                                @foreach ($parent->categories as $category)
+                                    <li onclick="chooseCategory(this)"><a class="list-group-item megamenu-caret" href="#">{{$category->name}}</a>
+                                     <ul class='sub-menu2' style="background-color:#fff;border:none">
                                             <li><a href="#"  class="list-group-item active">Sub-Category</a>
                                                 <ul>
-                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product2')}}"> piash shirt</a></li>
-                                                    <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
-                                                    <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
-                                                    <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
+                                                 @foreach ($category->subcategories as $subcategory)
+                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product2')}}">  {{$subcategory->name}}</a></li>
+                                                   @endforeach
                                                 </ul>
                                             </li>
                                         </ul>
-                                    
                                     </li>
-                                    <li><a href="#" class="list-group-item megamenu-caret">t-shirt</a></li>
-                                    <li><a href="#" class="list-group-item megamenu-caret">shirt</a></li>
+                                    @endforeach
+                                   
                                 </ul>
                             </li>
                         </ul>
 
 				</li>
-				<li><a href="#" class="list-group-item megamenu-caret">
-                    <i class="fa fa-laptop" aria-hidden="true"></i>Electronics</a>
+				@endforeach
+                <script>
+                chooseParent=el=>{
+                    $(".sub-menu1").css("display","none");
+                    el.children[1].style.display="block";
+                }
+                chooseCategory=el=>{
+                    $(".sub-menu2").css("display","none");
+                    el.children[1].style.display="block";
+                }
 
-					<ul style='background-color:#fff;border:none;' class='sub-menu1'>
-                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
-                            <ul>
-                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a>
-                                
-                                    <ul class='sub-menu2' style="background-color:#fff;border:none;">
-                                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
-                                            <ul>
-                                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                
-                                </li>
-                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-				</li>
 
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-paw" aria-hidden="true"></i>Shoes</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>Watches</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i>Kids and babies</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-heart" aria-hidden="true"></i>Health and beauty</a>
-				</li>
-
-                <li><a class="list-group-item megamenu-caret" href="#" class="list-group-item">
-                    <i class="fa fa-futbol-o" aria-hidden="true"></i>Sports</a>
-
-                    <ul style='background-color:#fff;border:none;' class='sub-menu1'>
-                        <li><a href="#"  class="list-group-item active">Category</a>
-                            <ul>
-                                <li><a class="list-group-item megamenu-caret" href="#">bangladeshi shirt</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi pant</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi t-shirt 55</a>
-                                    
-                                    <ul class='sub-menu2' style="background-color:#fff;border:none;">
-                                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
-                                            <ul>
-                                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                
-                                </li>
-                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi shirt</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-envira" aria-hidden="true"></i>House Hold</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-bullhorn" aria-hidden="true"></i>Others</a>
-				</li>
+                </script>
 				</ul>
             </div>
         </div> <!-- end mega menu area  --->

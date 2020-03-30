@@ -42,7 +42,7 @@ class OfferProductController extends Controller
                     $columns="{data: 'id', name: 'id'},
                     {data: 'offer.title', name: 'offer.title'},
                     {data: 'product.name', name: 'product.name'},";
-                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'offerProducts','title'=>'Offer Product List']);
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'offerproducts','title'=>'Offer Product List']);
     }
 
     /**
@@ -52,7 +52,7 @@ class OfferProductController extends Controller
      */
     public function create()
     {
-        $action="offerProducts";
+        $action="offerproducts";
         $name="Offer Product";
         $fields=[
             [
@@ -88,7 +88,7 @@ class OfferProductController extends Controller
         OfferProduct::create(
             $request->all()
         );
-        return redirect('/offerProducts');
+        return redirect('/offerproducts');
     }
 
     /**
@@ -111,7 +111,7 @@ class OfferProductController extends Controller
     public function edit(OfferProduct $offerProduct)
     {
         
-        $action="offerProducts/$offerProduct->id";
+        $action="offerproducts/$offerProduct->id";
         $name="Offer Product";
         $fields=[
             [
@@ -148,7 +148,7 @@ class OfferProductController extends Controller
     {
         $offerProduct->update($request->all());
 
-        return redirect('/offerProducts');
+        return redirect('/offerproducts');
     }
 
     /**

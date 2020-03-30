@@ -1,5 +1,6 @@
 <?php
 
+use App\model\ParentCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,8 @@ Route::get('/checkout4','CheckoutController@checkout4')->name('checkout4');
 //product section
 
 Route::get('/create-product',function (){
-    return view('front-end.product.create_product');
+
+    return view('front-end.product.create_product',["parentCategories"=>ParentCategory::all()]);
 })->name('create_product');
 
 Route::get('/create-product2',function (){
@@ -74,7 +76,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/suppliers', 'SupplierController');                                               
                                                                                            
                                                
-Route::resource('/categories', 'CategoryController')->middleware('is_admin');                                               
+Route::resource('/categories', 'CategoryController');//->middleware('is_admin');                                               
                                                
 Route::resource('/subcategories', 'SubCategoryController');                                               
                                                
@@ -86,15 +88,15 @@ Route::resource('/products', 'ProductController');
                                                
 Route::resource('/areas', 'AreaController');                                               
                                                
-Route::resource('/subDistricts', 'SubDistrictController');                                               
+Route::resource('/subdistricts', 'SubDistrictController');                                               
                                                
 Route::resource('/districts', 'DistrictController');                                               
                                                
 Route::resource('/divisions', 'DivisionController');                                               
                                                
-Route::resource('/paymentMethods', 'PaymentMethodController');                                               
+Route::resource('/paymentmethods', 'PaymentMethodController');                                               
                                                
-Route::resource('/productPaymentMethods', 'ProductPaymentMethodController');                                               
+Route::resource('/productpaymentmethods', 'ProductPaymentMethodController');                                               
                                                
                                                
                                                
@@ -104,7 +106,7 @@ Route::resource('/orders', 'OrderController');
                                                
 Route::resource('/orderLines', 'OrderLineController');                                               
                                                
-Route::resource('/orderPaymentMehods', 'OrderPaymentMehodController');                                               
+Route::resource('/orderpaymentmehods', 'OrderPaymentMehodController');                                               
                                                
 Route::resource('/supplierCategorys', 'SupplierCategoryController');                                               
                                                
@@ -118,7 +120,7 @@ Route::resource('/colorProducts', 'ColorProductController');
                                                
 Route::resource('/offers', 'OfferController');                                               
                                                
-Route::resource('/offerProducts', 'OfferProductController');                                               
+Route::resource('/offerproducts', 'OfferProductController');                                               
                                                
 Route::resource('/sliders', 'SliderController');                                               
                                                
@@ -140,7 +142,7 @@ Route::resource('/supplierfollows', 'SupplierFollowController');
                                                
 Route::resource('/tags', 'TagController');                                               
                                                
-Route::resource('/productTags', 'ProductTagController');                                               
+Route::resource('/producttags', 'ProductTagController');                                               
                                                
 Route::resource('/parentcategories', 'ParentCategoryController');                                               
                                                

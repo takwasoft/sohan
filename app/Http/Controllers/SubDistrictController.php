@@ -41,7 +41,7 @@ class SubDistrictController extends Controller
                     $columns="{data: 'id', name: 'id'},
                     {data: 'district.name', name: 'district.name'},
                     {data: 'name', name: 'name'},";
-                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'subDistricts','title'=>' SubDistrict List']);
+                    return view('table.data',["columns"=>$columns,"thead"=>$thead,"layout"=>'admin.master','ajax'=>'subdistricts','title'=>' SubDistrict List']);
     }
 
     /**
@@ -52,7 +52,7 @@ class SubDistrictController extends Controller
     public function create()
     {
 
-        $action="subDistricts";
+        $action="subdistricts";
         $name="SubDistrict";
         $fields=[
             [
@@ -85,7 +85,7 @@ class SubDistrictController extends Controller
         SubDistrict::create(
             $request->all()
         );
-        return redirect('/subDistricts');
+        return redirect('/subdistricts');
     }
 
     /**
@@ -107,7 +107,7 @@ class SubDistrictController extends Controller
      */
     public function edit(SubDistrict $subDistrict)
     {
-        $action="subDistricts/$subDistrict->id";
+        $action="subdistricts/$subDistrict->id";
         $name="SubDistrict";
         $fields=[
             [
@@ -141,7 +141,7 @@ class SubDistrictController extends Controller
     public function update(Request $request, SubDistrict $subDistrict)
     {
         $subDistrict->update($request->all());
-        return redirect('/subDistricts');
+        return redirect('/subdistricts');
     }
 
     /**
