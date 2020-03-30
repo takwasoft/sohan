@@ -68,7 +68,10 @@
                                         <ul class='sub-menu2' style="background-color:#fff;border:none;display:block">
                                             <li><a href="#"  class="list-group-item active">Sub-District</a>
                                                 <ul>
-                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}"> Gazipur Sadar Upazila</a></li>
+                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}"> Gazipur Sadar Upazila</a>
+                                                    
+                                                    
+                                                    </li>
                                                     <li><a href="#" class="list-group-item megamenu-caret"> Kaliakair Upazila</a></li>
                                                     <li><a href="#" class="list-group-item megamenu-caret"> Kapasia Upazila</a></li>
                                                     <li><a href="#" class="list-group-item megamenu-caret"> Sreepur Upazila</a></li>
