@@ -4,21 +4,21 @@
 <title>create product</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	
+
 	<link href="{{asset('/')}}front-end/css/bootstrap.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{asset('/')}}front-end/fonts/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{asset('/')}}front-end/css/owl.carousel.css">
 	<script src="{{asset('/')}}front-end/js/jquery-1.12.0.min.js"></script>
 	<link rel="stylesheet" href="{{asset('/')}}front-end/css/megamenu.css">
     <link rel="stylesheet" href="{{asset('/')}}front-end/css/ionicons.min.css">
-	
+
 	<link href="{{asset('/')}}front-end/css/style.css" rel="stylesheet" type="text/css" />
 	<link href="{{asset('/')}}front-end/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 	<script type="text/javascript" src="{{asset('/')}}front-end/js/easing.js"></script>
 	<script src="{{asset('/')}}front-end/js/easyResponsiveTabs.js" type="text/javascript"></script>
 	<link href="{{asset('/')}}front-end/css/easy-responsive-tabs.css" rel="stylesheet" type="text/css" media="all"/>
 	<link rel="stylesheet" href="{{asset('/')}}front-end/css/global.css">
-	
+
 </head>
 
 <body>
@@ -31,8 +31,10 @@
     </div>
 	<div class="col-sm-6 col-xs-12">
 	<div class="progress1">
-        <li class="active">Product</li>
-        <li >Payment</li>
+        <li class="active">Category</li>
+        <li>Place</li>
+        <li>Product</li>
+        <li>Payment</li>
         <li>Success</li>
     </div>
 	</div>
@@ -46,216 +48,126 @@
 </nav>
 </header>
 <main>
-
 <div class="container">
-	<div class="col-xs-12 create-product-controls">
-		<button type="button" class="btn btn-my pull-right">Next</button>
-	</div>
-</div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group categories-list megamenu">
+				<ul>
+					<a class="list-group-item active">
+						<i class="fa fa-bars" aria-hidden="true"></i>Parent-Categories
+					</a>
+                <li><a href="#" class="list-group-item megamenu-caret">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>Clothing</a>
 
-<div class="container">
-	<div class="row ">
-		<div class="col-md-12 ">
-			<h4>Upload Your Product Images</h4>
-			<p>Upload clear and good quality pictures. At least one image is mandatory and should be bigger than 500 x 500</p>
-		</div>
-	</div>
-	<div class="row create-product-upload">
-		<div class="col-md-3 ">
-			<p>Main Photo 1/4</p>
-			<div class="input-file">
-				<input type="file" />
-			</div>
-		</div>
-		<div class="col-md-3 ">
-			<p>Main Photo 1/4</p>
-			<div class="input-file">
-				<input type="file" />
-			</div>
-		</div>
-		<div class="col-md-3 ">
-			<p>Main Photo 1/4</p>
-			<div class="input-file">
-				<input type="file" />
-			</div>
-		</div>
-		<div class="col-md-3 ">
-			<p>Main Photo 1/4</p>
-			<div class="input-file">
-				<input type="file" />
-			</div>
-		</div>
-		<div class="col-md-12">
-		<button type="button" class="btn btn-my" data-toggle="modal" data-target="#image-upload">More upload</button>
-		
-		<!-- Modal -->
-<div id="image-upload" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+                        <ul style='background-color:#fff;border:none;display:block' class='sub-menu1'>
+                            <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                                <ul>
+                                    <li><a class="list-group-item megamenu-caret" href="#">shirt</a></li>
+                                    <li><a href="#" class="list-group-item megamenu-caret">pant</a>
+                                    
+                                        <ul class='sub-menu2' style="background-color:#fff;border:none;display:block">
+                                            <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                                                <ul>
+                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product2')}}"> piash shirt</a></li>
+                                                    <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
+                                                    <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
+                                                    <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    
+                                    </li>
+                                    <li><a href="#" class="list-group-item megamenu-caret">t-shirt</a></li>
+                                    <li><a href="#" class="list-group-item megamenu-caret">shirt</a></li>
+                                </ul>
+                            </li>
+                        </ul>
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">More Products Upload</h4>
-      </div>
-      <div class="modal-body">
-       <input type="file" >
-	   <input type="file" >
-	   <input type="file" >
-	   <input type="file" >
-	   <input type="file" >
-	   <input type="file" >
-	   <input type="file" >
-	   <input type="file" >
-      </div>
-      <div class="modal-footer">
-		 <button type="button" class="btn btn-my" >Submit</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+				</li>
+				<li><a href="#" class="list-group-item megamenu-caret">
+                    <i class="fa fa-laptop" aria-hidden="true"></i>Electronics</a>
+
+					<ul style='background-color:#fff;border:none;' class='sub-menu1'>
+                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                            <ul>
+                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
+                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a>
+                                
+                                    <ul class='sub-menu2' style="background-color:#fff;border:none;">
+                                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                                            <ul>
+                                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
+                                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
+                                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
+                                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                
+                                </li>
+                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
+                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+				</li>
+
+                <li><a href="#" class="list-group-item">
+                    <i class="fa fa-paw" aria-hidden="true"></i>Shoes</a>
+				</li>
+
+                <li><a href="#" class="list-group-item">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>Watches</a>
+				</li>
+
+                <li><a href="#" class="list-group-item">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>Kids and babies</a>
+				</li>
+
+                <li><a href="#" class="list-group-item">
+                    <i class="fa fa-heart" aria-hidden="true"></i>Health and beauty</a>
+				</li>
+
+                <li><a class="list-group-item megamenu-caret" href="#" class="list-group-item">
+                    <i class="fa fa-futbol-o" aria-hidden="true"></i>Sports</a>
+
+                    <ul style='background-color:#fff;border:none;' class='sub-menu1'>
+                        <li><a href="#"  class="list-group-item active">Category</a>
+                            <ul>
+                                <li><a class="list-group-item megamenu-caret" href="#">bangladeshi shirt</a></li>
+                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi pant</a></li>
+                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi t-shirt 55</a>
+                                    
+                                    <ul class='sub-menu2' style="background-color:#fff;border:none;">
+                                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                                            <ul>
+                                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
+                                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
+                                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
+                                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                
+                                </li>
+                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi shirt</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+				</li>
+
+                <li><a href="#" class="list-group-item">
+                    <i class="fa fa-envira" aria-hidden="true"></i>House Hold</a>
+				</li>
+
+                <li><a href="#" class="list-group-item">
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>Others</a>
+				</li>
+				</ul>
+            </div>
+        </div> <!-- end mega menu area  --->
     </div>
-
-  </div>
 </div>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-	<div class="row ">
-		<div class="col-md-12 ">
-			<h4>Product Details</h4>
-		</div>
-	</div>
-	<div class="row ">
-		<div class="col-md-12 ">
-			<div class="create-product-details">
-				<form class="form-horizontal">
-				  <div class="form-group">
-					<label for="name" class="col-sm-2 control-label" >Product Name *</label>
-					<div class="col-sm-10">
-					<input type="text" class="form-control" id="name" placeholder="Insert Product Name">
-					</div>
-				  </div>
-				</form>
-				<h5>Description *</h5>
-				<textarea class="form-control" rows="4"></textarea>
-				<h5>Description *</h5>
-				<textarea class="form-control" rows="4"></textarea>
-				
-				<div class="row">
-					<div class="col-md-3">
-						<div class=" form-group">
-							<label for="Category">Category *</label>
-							<select class="form-control" id="Category">
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class=" form-group">
-							<label for="Category">Category *</label>
-							<select class="form-control" id="Category">
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class=" form-group">
-							<label for="Category">Category *</label>
-							<select class="form-control" id="Category">
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class=" form-group">
-							<label for="Category">Category *</label>
-							<select class="form-control" id="Category">
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-							</select>
-						</div>
-					</div>
-					
-				</div>
-				
-				
-				<div class="row">
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="Item">Item weight *</label>
-							<input type="text" class="form-control " id="Item" placeholder="Please insert a valid number">
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class=" form-group">
-							<label for="Category">Category *</label>
-							<select class="form-control" id="Category">
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-								<option>man</option>
-							</select>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-	<div class="row ">
-		<div class="col-md-12 ">
-			<h4>Product Quantity & Price</h4>
-		</div>
-	</div>
-	<div class="row ">
-		<div class="col-md-12 ">
-			<div class="create-product-details">
-				<div class="form-group">
-					<label for="Quantity">Quantity *</label>
-					<input type="number" class="form-control width-control" id="Quantity" placeholder="...">
-				</div>
-				
-				<div class="form-group">
-					<label for="Price">Price with tax *</label>
-					<input type="text" class="form-control width-control" id="Price" placeholder="Price">
-				</div>
-				<label>Listing duration (in days)</label>
-				<div class="radio">
-					<label>
-					  <input name="checkbox1" type="radio">&nbsp 90 days &nbsp
-					</label>
-					<label>
-					  <input name="checkbox1" type="radio">&nbsp Never Delete This Product
-					</label>
-				 </div>
-				 
-			</div>
-		</div>
-	</div>
-</div>
-
-
 
 
 </main>
@@ -267,13 +179,13 @@
 	</div>
 </div>
 
-    
+
 
 <a href="#" id="back-to-top" title="Back to top">
 	<img src="{{asset('/')}}front-end/images/arrow_up.png" alt="" />
 </a>
 
-	
+
 		<!-- bootstrap js -->
         <script src="{{asset('/')}}front-end/js/bootstrap.js"></script>
 		<!-- owl.carousel js -->

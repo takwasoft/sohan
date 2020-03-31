@@ -1,5 +1,5 @@
 /*global $ */
-$(document).ready(function () {
+$(document).ready(function() {
 
     "use strict";
 
@@ -17,22 +17,32 @@ $(document).ready(function () {
     //Normal megamenu is hidden if width is below 959px, and jquery adds mobile megamenu
     //Done this way so it can be used with wordpress without any trouble
 
-    $(".megamenu > ul > li").hover(function (e) {
-        if ($(window).width() > 648) {
-            $(this).children("ul").stop(true, false).fadeToggle(150);
-            e.preventDefault();
-        }
-    });
+
+
+
+
+    // $(".megamenu > ul > li").hover(function(e) {
+    //     if ($(window).width() > 648) {
+    //         $(this).children("ul").stop(true, false).fadeToggle(150);
+    //         e.preventDefault();
+    //     }
+    // });
+
+
+
+
+
+
     //If width is more than 648px dropdowns are displayed on hover
 
-    $(".megamenu > ul > li").click(function () {
+    $(".megamenu > ul > li").click(function() {
         if ($(window).width() <= 648) {
             $(this).children("ul").fadeToggle(150);
         }
     });
     //If width is less or equal to 648px dropdowns are displayed on click (thanks Aman Jain from stackoverflow)
 
-    $(".menu-mobile").click(function (e) {
+    $(".menu-mobile").click(function(e) {
         $(".megamenu > ul").toggleClass('show-on-mobile');
         e.preventDefault();
     });

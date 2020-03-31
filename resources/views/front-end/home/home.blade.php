@@ -38,57 +38,57 @@
 					<ul>
                         <li><a href="#">Mens</a>
                             <ul>
-                                <li><a href="#">shirt</a></li>
-                                <li><a href="#">pant</a></li>
-								<li><a href="#">t-shirt</a></li>
-								<li><a href="#">shirt</a></li>
+                                <li><a href="#">Piash shirt</a></li>
+                                <li><a href="#">Piash pant</a></li>
+								<li><a href="#">Piash t-shirt</a></li>
+								<li><a href="#">Piash shirt</a></li>
                             </ul>
                         </li>
                         <li><a href="#">Women</a>
                             <ul>
-                                <li><a href="#">shorts</a></li>
-                                <li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
+                                <li><a href="#">Piash shorts</a></li>
+                                <li><a href="#">Piash kamiz</a></li>
+								<li><a href="#">Piash kamiz</a></li>
+								<li><a href="#">Piash kamiz</a></li>
                             </ul>
                         </li>
                         <li><a href="#">Deals of the week</a>
-                            <img src="{{asset('/')}}front-end/images/advertise/ad4.jpg" alt="" width="100%" />
+                            <img src="{{asset('/')}}front-end/images/advertise/ad5.jpg" alt="" width="100%" />
                         </li>
                     </ul>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-paw" aria-hidden="true"></i>Shoes</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>Watches</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>Kids and babies</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-heart" aria-hidden="true"></i>Health and beauty</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-futbol-o" aria-hidden="true"></i>Sports</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-envira" aria-hidden="true"></i>House Hold</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-bullhorn" aria-hidden="true"></i>Others</a>
 				</li>
 				</ul>
             </div>
         </div> <!-- end mega menu area  --->
-        
+
         <div class="col-md-9">
             <div id="slider" class="owl-carousel owl-theme">
                 <div class="item"><img src="{{asset('/')}}front-end/images/slider/01.jpg" alt=""></div>
@@ -132,8 +132,8 @@
                 </ul>
                 <div class="tab-content">
 					<div id="home" class="tab-pane fade in active">
-                        
-						
+
+
 						<div class="row text-center">
 							<div class="col-sm-3">
 								<img src="{{asset('/')}}front-end/images/Samsung_logo.png" alt="" width="80%" />
@@ -148,7 +148,7 @@
 								<img src="{{asset('/')}}front-end/images/MSFT_logo.png" alt="" width="80%" />
 							</div>
 						</div> <!-- End home tab content row 2 -->
-						
+
 						<div class="row text-center">
 							<div class="col-sm-3">
 								<img src="{{asset('/')}}front-end/images/MSFT_logo.png" alt="" width="80%" />
@@ -163,7 +163,7 @@
 								<img src="{{asset('/')}}front-end/images/Samsung_logo.png" alt="" width="80%" />
 							</div>
 						</div> <!-- End home tab content row 3 -->
-						
+
 						<div class="row text-center">
 							<div class="col-sm-3">
 								<img src="{{asset('/')}}front-end/images/Samsung_logo.png" alt="" width="80%" />
@@ -179,14 +179,14 @@
 							</div>
 						</div> <!-- End home tab content row 4 -->
                     </div>  <!-- End home tab content  -->
-					
+
                     <div id="menu1" class="tab-pane fade">
                        <h4>Same this</h4>
                     </div>  <!-- End fashion tab content  -->
                     <div id="menu3" class="tab-pane fade">
                        <h4>Same this</h4>
                     </div>   <!-- End MOBILE tab content  -->
-					
+
                 </div>  <!--- end Tab-content  ------>
 			</div>  <!--- end Tab  ------>
 		</div>
@@ -200,7 +200,7 @@
 		</div>
 	</div>  <!-- end top-ad  --->
 
- 
+
 	<div class="container">
 		<div class="col-md-12">
 			<div class="top-heading">
@@ -213,11 +213,11 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
-			
-			
+
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -227,14 +227,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 								<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -244,14 +244,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 								<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -261,14 +261,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 								<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -278,7 +278,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -286,9 +286,9 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
-	
+
 	<div class="container">
 		<div class="col-md-12">
 			<div class="top-heading">
@@ -301,7 +301,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 							<!-- single product  --->
@@ -313,14 +313,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 								<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -330,14 +330,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 								<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -347,14 +347,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 								<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -364,7 +364,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -372,9 +372,9 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
-	
+
 	<div class="half-width-ad">
 		<div class="container">
 			<div class="col-md-6">
@@ -385,7 +385,7 @@
 			</div>
 		</div>
 	</div>  <!-- end top-ad  --->
-	
+
 	<div class="container">
 		<div class="col-md-12">
 			<div class="top-heading">
@@ -398,7 +398,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 				<!-- single product  --->
@@ -410,14 +410,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -427,14 +427,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -444,14 +444,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -461,7 +461,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -469,9 +469,9 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
-	
+
 	<div class="container">
 		<div class="col-md-12">
 			<div class="top-heading">
@@ -484,7 +484,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 				<!-- single product  --->
@@ -496,14 +496,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -513,14 +513,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -530,14 +530,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -547,7 +547,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -555,9 +555,9 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
-	
+
 	<div class="half-width-ad">
 		<div class="container">
 			<div class="col-md-6">
@@ -568,7 +568,7 @@
 			</div>
 		</div>
 	</div>  <!-- end top-ad  --->
-	
+
 	<div class="container">
 		<div class="col-md-12">
 			<div class="top-heading">
@@ -581,7 +581,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 				<!-- single product  --->
@@ -593,14 +593,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -610,14 +610,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -627,14 +627,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -644,7 +644,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -652,9 +652,9 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
-	
+
 	<div class="container">
 		<div class="col-md-12">
 			<div class="top-heading">
@@ -667,7 +667,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 				<!-- single product  --->
@@ -679,14 +679,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -696,14 +696,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -713,14 +713,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -730,7 +730,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -738,9 +738,9 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
-	
+
 	<div id="about">
 		<div class="row">
 			<div class="container">
@@ -752,11 +752,11 @@
 				<div class="col-md-6">
 					<h2>WHAT IS TMIWEB.CO </h2>
 					<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-					venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-					Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-					Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-					rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non 
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa,
+					venenatis sit amet lorem sit amet, dignissim laoreet tortor.
+					Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra.
+					Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa
+					rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non
 					tempor odio, sed faucibus arcu. Duis id convallis odio. Proin sit amet enim
 					scelerisque, convallis metus mollis, varius turpis.
 					</p>
@@ -764,7 +764,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="container">
 			<div class="row padding">
 				<div class="col-md-6">
@@ -774,12 +774,12 @@
 						</div>
 						<h3 class="text-center"> HOW TO BUY ? </h3>
 						<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui.  
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa,
+						venenatis sit amet lorem sit amet, dignissim laoreet tortor.
+						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra.
+						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa
+						rutrum eleifend non nec dui.
+						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa
 						rutrum eleifend non nec dui.
 						</p>
 					</div>
@@ -791,12 +791,12 @@
 						</div>
 						<h3 class="text-center"> HOW TO BUY ? </h3>
 						<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui.  
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa,
+						venenatis sit amet lorem sit amet, dignissim laoreet tortor.
+						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra.
+						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa
+						rutrum eleifend non nec dui.
+						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa
 						rutrum eleifend non nec dui.
 						</p>
 					</div>
@@ -806,7 +806,7 @@
 			</div>
 		</div>
 	</div> <!-- end about  --->
-	
+
 	<div class="full-width-ad">
 		<div class="container">
 			<div class="col-md-12 text-center">

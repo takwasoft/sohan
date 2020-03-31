@@ -44,6 +44,14 @@ Route::get('/create-product2',function (){
     return view('front-end.product.create_product2');
 })->name('create_product2');
 
+Route::get('/create-product3',function (){
+    return view('front-end.product.create_product3');
+})->name('create_product3');
+
+Route::get('/create-product4',function (){
+    return view('front-end.product.create_product4');
+})->name('create_product4');
+
 Route::get('/product-details',function (){
     return view('front-end.product.product_details');
 })->name('product_details');
