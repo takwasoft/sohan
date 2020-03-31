@@ -71,7 +71,7 @@
                                             <li><a href="#"  class="list-group-item active">Sub-Category</a>
                                                 <ul>
                                                  @foreach ($category->subcategories as $subcategory)
-                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product2')}}">  {{$subcategory->name}}</a></li>
+                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product2')}}?sub={{$subcategory->id}}">  {{$subcategory->name}}</a></li>
                                                    @endforeach
                                                 </ul>
                                             </li>
@@ -106,12 +106,12 @@
 
 </main>
 
-
+{{-- 
 <div class="container">
 	<div class="col-xs-12 create-product-controls">
 		<a href="{{route('create_product2')}}"><button type="button" class="btn btn-my pull-right">Next</button></a>
 	</div>
-</div>
+</div> --}}
 
 
 

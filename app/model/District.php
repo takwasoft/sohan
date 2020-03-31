@@ -13,4 +13,7 @@ protected $fillable = [
 public function Division(){
     return $this->belongsTo(Division::class);
 }
+public function SubDistricts(){
+    return $this->hasMany(SubDistrict::class);
+}
 }

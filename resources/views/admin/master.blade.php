@@ -4,7 +4,7 @@
 
   <!-- Main Sidebar Container -->
   @include('admin.includes.aside')
-@yield('content')
+@yield('content') 
   <!-- Content Wrapper. Contains page content -->
 
   <!-- /.content-wrapper -->

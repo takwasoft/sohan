@@ -12,5 +12,8 @@ protected $fillable = [
 ];
 public function District(){
     return $this->belongsTo(District::class);
-}                 
+}   
+public function Areas(){
+    return $this->hasMany(Area::class);
+}              
 }

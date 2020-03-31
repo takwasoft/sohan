@@ -9,7 +9,7 @@ class Product extends Model
     
 protected $fillable = [
 'id','name','code','price','discount','description','duration','status',
-'sub_category_id','brand_id'
+'sub_category_id','brand_id','area_id','weight','weight_type_id','quantity','product_condition',"supplier_id"
 ];
 
 public function SubCategory(){
@@ -17,5 +17,14 @@ public function SubCategory(){
 }
 public function Brand(){
     return $this->belongsTo(Brand::class);
-}             
+}     
+public function Area(){
+    return $this->belongsTo(Area::class);
+}  
+public function WeightType(){
+    return $this->belongsTo(WeightType::class);
+}       
+public function Supplier(){
+    return $this->belongsTo(Supplier::class);
+}  
 }

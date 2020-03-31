@@ -17,7 +17,8 @@
 	<script type="text/javascript" src="{{asset('/')}}front-end/js/easing.js"></script>
 	<script src="{{asset('/')}}front-end/js/easyResponsiveTabs.js" type="text/javascript"></script>
 	<link href="{{asset('/')}}front-end/css/easy-responsive-tabs.css" rel="stylesheet" type="text/css" media="all"/>
-	<link rel="stylesheet" href="{{asset('/')}}front-end/css/global.css">
+    <link rel="stylesheet" href="{{asset('/')}}front-end/css/global.css">
+    
 
 </head>
 
@@ -56,137 +57,49 @@
 					<a class="list-group-item active">
 						<i class="fa fa-bars" aria-hidden="true"></i>Division
 					</a>
-                <li><a href="#" class="list-group-item megamenu-caret">
-                    Dhaka</a>
+               @foreach($divisions as $division)
+               <li onclick="chooseDiv(this)"><a href="#" class="list-group-item megamenu-caret">
+                {{$division->name}}</a>
 
-                        <ul style='background-color:#fff;border:none;display:block' class='sub-menu1'>
-                            <li><a href="#"  class="list-group-item active">District</a>
-                                <ul>
-                                    <li><a class="list-group-item megamenu-caret" href="#">Dhaka</a></li>
-                                    <li><a href="#" class="list-group-item megamenu-caret">Ghazipur</a>
-
-                                        <ul class='sub-menu2' style="background-color:#fff;border:none;display:block">
-                                            <li><a href="#"  class="list-group-item active">Sub-District</a>
-                                                <ul>
-                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}"> Gazipur Sadar Upazila</a>
-
-                                                        <ul class='sub-menu3' style="background-color:#fff;border:none;display:block">
-                                                            <li><a href="#"  class="list-group-item active">Area</a>
-                                                                <ul>
-                                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}">Lamchary</a>
-                                                                    </li>
-                                                                    <li><a href="#" class="list-group-item megamenu-caret">Samserabah</a></li>
-                                                                    <li><a href="#" class="list-group-item megamenu-caret">Chor camita</a></li>
-                                                                    <li><a href="#" class="list-group-item megamenu-caret"> Sonar bangla</a></li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-
-                                                    </li>
-                                                    <li><a href="#" class="list-group-item megamenu-caret"> Kaliakair Upazila</a>
-                                                        
-                                                        <ul class='sub-menu3' style="background-color:#fff;border:none;">
-                                                            <li><a href="#"  class="list-group-item active">Area</a>
-                                                                <ul>
-                                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}">Lamchary 5</a>
-                                                                    </li>
-                                                                    <li><a href="#" class="list-group-item megamenu-caret">Samserabah 5</a></li>
-                                                                    <li><a href="#" class="list-group-item megamenu-caret">Chor camita 5</a></li>
-                                                                    <li><a href="#" class="list-group-item megamenu-caret"> Sonar bangla 5</a></li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    
-                                                    </li>
-                                                    <li><a href="#" class="list-group-item megamenu-caret"> Kapasia Upazila</a></li>
-                                                    <li><a href="#" class="list-group-item megamenu-caret"> Sreepur Upazila</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-
-                                    </li>
-                                    <li><a href="#" class="list-group-item megamenu-caret">Kishoreganj</a></li>
-                                    <li><a href="#" class="list-group-item megamenu-caret">Manikganj</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-				</li>
-				<li><a href="#" class="list-group-item megamenu-caret">
-                    Chittagong</a>
-
-					<ul style='background-color:#fff;border:none;' class='sub-menu1'>
+                    <ul style='background-color:#fff;border:none;' class='sub-menu1'>
                         <li><a href="#"  class="list-group-item active">District</a>
                             <ul>
-                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a>
+                                    @foreach($division->districts as $district)
+                               <li onclick="chooseDis(this)"><a href="#" class="list-group-item megamenu-caret">{{$district->name}}</a>
 
                                     <ul class='sub-menu2' style="background-color:#fff;border:none;">
                                         <li><a href="#"  class="list-group-item active">Sub-District</a>
                                             <ul>
-                                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
+                                                    @foreach($district->subdistricts as $subdistrict)
+                                                <li onclick="chooseSubDis(this)"><a href="#" class="list-group-item megamenu-caret" > {{$subdistrict->name}}</a>
+
+                                                    <ul class='sub-menu3' style="background-color:#fff;border:none;">
+                                                        <li><a href="#"  class="list-group-item active">Area</a>
+                                                            <ul>
+                                                                    @foreach($subdistrict->areas as $area)
+                                                                <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}?area={{$area->id}}">{{$area->name}}</a>
+                                                                </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+
+                                                </li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                     </ul>
 
+
                                 </li>
-                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
+                                @endforeach
                             </ul>
                         </li>
                     </ul>
-				</li>
 
-                <li><a href="#" class="list-group-item">
-                    </i>Barisal</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                   Khulna</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    Mymensingh</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    Rajshahi</a>
-				</li>
-
-                <li><a class="list-group-item megamenu-caret" href="#" class="list-group-item">
-                    Rangpur</a>
-
-                    <ul style='background-color:#fff;border:none;' class='sub-menu1'>
-                        <li><a href="#"  class="list-group-item active">Category</a>
-                            <ul>
-                                <li><a class="list-group-item megamenu-caret" href="#">bangladeshi shirt</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi pant</a></li>
-                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi t-shirt 55</a>
-
-                                    <ul class='sub-menu2' style="background-color:#fff;border:none;">
-                                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
-                                            <ul>
-                                                <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
-                                                <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-                                </li>
-                                <li><a href="#" class="list-group-item megamenu-caret">bangladeshi shirt</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    Sylhet</a>
-				</li>
+            </li>
+               @endforeach
+				
 
 				</ul>
             </div>
@@ -200,11 +113,28 @@
 
 <div class="container">
 	<div class="col-xs-12 create-product-controls">
-		<a href="{{route('create_product2')}}"><button type="button" class="btn btn-my pull-right">Next</button></a>
+		<a href="{{route('create_product2')}}"><button type="button" class="btn btn-my pull-right">Skip</button></a>
 	</div>
 </div>
 
+<script>
+        window.localStorage.setItem("sub","{{request()->sub}}");
+        window.localStorage.setItem("area","");
+        chooseDiv=el=>{
+            $(".sub-menu1").css("display","none");
+            el.children[1].style.display="block";
+        }
+        chooseDis=el=>{
+            $(".sub-menu2").css("display","none");
+            el.children[1].style.display="block";
+        }
+        chooseSubDis=el=>{
+            $(".sub-menu3").css("display","none");
+            el.children[1].style.display="block";
+        }
 
+
+        </script>
 
 <a href="#" id="back-to-top" title="Back to top">
 	<img src="{{asset('/')}}front-end/images/arrow_up.png" alt="" />

@@ -11,7 +11,7 @@ class CustomerController extends Controller
     }
 
     public function customer_registration(){
-        return view('front-end.customer.registration');
+        return view('front-end.customer.registration'); 
     }
 
     public function customer_account(){

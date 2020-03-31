@@ -1,6 +1,11 @@
 <?php
 
+use App\model\Brand;
+use App\model\Color;
+use App\model\Division;
 use App\model\ParentCategory;
+use App\model\Size;
+use App\model\WeightType;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +38,7 @@ Route::get('/checkout1','CheckoutController@checkout1')->name('checkout1');
 Route::get('/checkout2','CheckoutController@checkout2')->name('checkout2');
 Route::get('/checkout3','CheckoutController@checkout3')->name('checkout3');
 Route::get('/checkout4','CheckoutController@checkout4')->name('checkout4');
-
+ 
 
 //product section
 
@@ -43,11 +48,11 @@ Route::get('/create-product',function (){
 })->name('create_product');
 
 Route::get('/create-product2',function (){
-    return view('front-end.product.create_product2');
+    return view('front-end.product.create_product2',["divisions"=>Division::all()]);
 })->name('create_product2');
 
 Route::get('/create-product3',function (){
-    return view('front-end.product.create_product3');
+    return view('front-end.product.create_product3',['brands'=>Brand::all(),'colors'=>Color::all(),'sizes'=>Size::all(),'weightTypes'=>WeightType::all()]);
 })->name('create_product3');
 
 Route::get('/create-product4',function (){
@@ -140,9 +145,12 @@ Route::resource('/supplierchats', 'SupplierChatController');
                                                
 Route::resource('/supplierfollows', 'SupplierFollowController');                                               
                                                
-Route::resource('/tags', 'TagController');                                               
+Route::resource('/tags', 'TagController');                            
+Route::resource('/weighttypes', 'WeightTypeController');                                               
+
                                                
 Route::resource('/producttags', 'ProductTagController');                                               
                                                
 Route::resource('/parentcategories', 'ParentCategoryController');                                               
                                                
+Route::post('add-product','SellerController@insertProduct');
