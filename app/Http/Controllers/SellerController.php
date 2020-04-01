@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\model\ColorProduct;
 use App\model\Product;
 use App\model\ProductImage;
+use App\model\SizeProduct;
 use Illuminate\Http\Request;
 use Image;
 class SellerController extends Controller
@@ -26,6 +28,22 @@ class SellerController extends Controller
                 "product_id"=>$product->id,
                 "serial"=>1
             ]);
+        }
+        foreach($request->colors as $color){
+            ColorProduct::create(
+                [
+                    "product_id"=>$product->id,
+                    "color_id"=>$color
+                ]
+                );
+        }
+        foreach($request->sizes as $size){
+            SizeProduct::create(
+                [
+                    "product_id"=>$product->id,
+                    "size_id"=>$size
+                ]
+                );
         }
     }
 }

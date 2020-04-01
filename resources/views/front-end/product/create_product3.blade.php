@@ -238,7 +238,7 @@
 							</div>
 							<div class="form-group">
 								<label>Color</label>
-								<select name="color[]" class="select2" multiple="multiple"
+								<select name="colors[]" class="select2" multiple="multiple"
 									data-placeholder="Select a State" style="width: 100%;">
 									@foreach ($colors as $color)
 									<option value="{{$color->id}}">
@@ -249,7 +249,7 @@
 							</div>
 							<div class="form-group">
 								<label>Size</label>
-								<select name="size[]" class="select2" multiple="multiple"
+								<select name="sizes[]" class="select2" multiple="multiple"
 									data-placeholder="Select a State" style="width: 100%;">
 									@foreach ($sizes as $size)
 									<option value="{{$size->id}}">
