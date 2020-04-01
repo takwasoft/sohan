@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\model\ColorProduct;
+use App\model\PaymentMethod;
 use App\model\Product;
 use App\model\ProductImage;
+use App\model\ReturnPolicy;
 use App\model\SizeProduct;
 use Illuminate\Http\Request;
 use Image;
@@ -45,5 +47,13 @@ class SellerController extends Controller
                 ]
                 );
         }
+        return view('front-end.product.create_product4',['methods'=>PaymentMethod::all(),'policies'=>ReturnPolicy::all(),"id"=>$product->id]);
+    }
+
+    public function createProductFinal(Request $request,Product $product){
+        
+    }
+    public function createProductSuccess(Product $product){
+        
     }
 }

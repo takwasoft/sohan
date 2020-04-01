@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2020 at 11:58 AM
+-- Generation Time: Apr 01, 2020 at 04:24 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -48,6 +48,13 @@ CREATE TABLE `areas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `areas`
+--
+
+INSERT INTO `areas` (`id`, `name`, `sub_district_id`, `created_at`, `updated_at`) VALUES
+(1, 'Sheworapara', 1, '2020-03-31 00:07:12', '2020-03-31 00:07:12');
+
 -- --------------------------------------------------------
 
 --
@@ -76,6 +83,13 @@ CREATE TABLE `brands` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `name`, `description`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Oppo', '<p>s</p>', '1585669660.jpg', '2020-03-31 09:47:40', '2020-03-31 09:47:40');
 
 -- --------------------------------------------------------
 
@@ -116,9 +130,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `parent_category_id`, `name`, `description`, `image`, `home`, `created_at`, `updated_at`) VALUES
-(2, 0, 'tyaas', '<p><span style=\"background-color: rgb(255, 255, 0);\">sa</span></p>', '1585194034.png', 1, '2020-03-25 09:23:56', '2020-03-25 21:40:34'),
-(4, 0, 'as', '<p>ws</p>', '1585192097.jpg', 1, '2020-03-25 21:08:17', '2020-03-25 21:08:17'),
-(6, 0, 'sas', '<p>fdf</p>', '1585196544.jpg', 1, '2020-03-25 22:22:24', '2020-03-25 22:22:24');
+(7, 1, 'd', '<p>ds</p>', '1585226445.jpg', 0, '2020-03-26 06:40:45', '2020-03-26 06:40:45'),
+(8, 2, 'Mobile', '<p>as</p>', '1585585826.jpg', 0, '2020-03-30 10:30:26', '2020-03-30 10:30:26');
 
 -- --------------------------------------------------------
 
@@ -132,6 +145,13 @@ CREATE TABLE `colors` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `colors`
+--
+
+INSERT INTO `colors` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'green', '2020-03-31 03:31:15', '2020-03-31 03:31:15');
 
 -- --------------------------------------------------------
 
@@ -161,6 +181,13 @@ CREATE TABLE `districts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `districts`
+--
+
+INSERT INTO `districts` (`id`, `name`, `division_id`, `created_at`, `updated_at`) VALUES
+(1, 'Dhaka', 1, '2020-03-30 08:06:32', '2020-03-30 08:06:32');
+
 -- --------------------------------------------------------
 
 --
@@ -173,6 +200,13 @@ CREATE TABLE `divisions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `divisions`
+--
+
+INSERT INTO `divisions` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Dhaka', '2020-03-30 08:06:17', '2020-03-30 08:06:17');
 
 -- --------------------------------------------------------
 
@@ -187,6 +221,18 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medicines`
+--
+
+CREATE TABLE `medicines` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -242,7 +288,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (34, '2020_03_24_152926_create_tags_table', 21),
 (35, '2020_03_24_152952_create_product_tags_table', 21),
 (36, '2014_10_12_100000_create_password_resets_table', 22),
-(37, '2020_03_26_100614_create_parent_categories_table', 22);
+(37, '2020_03_26_100614_create_parent_categories_table', 22),
+(38, '2020_03_28_045029_create_medicines_table', 23),
+(39, '2020_03_31_125308_create_weight_types_table', 23),
+(40, '2020_04_01_104601_create_return_policies_table', 24),
+(41, '2020_04_01_131351_create_product_return_policies_table', 24);
 
 -- --------------------------------------------------------
 
@@ -349,7 +399,9 @@ CREATE TABLE `parent_categories` (
 --
 
 INSERT INTO `parent_categories` (`id`, `name`, `description`, `image`, `home`, `created_at`, `updated_at`) VALUES
-(1, 'test', '<p>new des</p>', '1585220893.jpg', 0, '2020-03-26 05:08:13', '2020-03-26 05:29:53');
+(1, 'test', '<p>new des</p>', '1585220893.jpg', 0, '2020-03-26 05:08:13', '2020-03-26 05:29:53'),
+(2, 'Electronic', '<p>test</p>', '1585585756.jpg', 0, '2020-03-30 10:29:16', '2020-03-30 10:29:16'),
+(3, 'Cloth', '<p>sa</p>', '1585585776.jpg', 0, '2020-03-30 10:29:36', '2020-03-30 10:29:36');
 
 -- --------------------------------------------------------
 
@@ -378,6 +430,14 @@ CREATE TABLE `payment_methods` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `payment_methods`
+--
+
+INSERT INTO `payment_methods` (`id`, `name`, `image`, `details`, `created_at`, `updated_at`) VALUES
+(1, 'Bkash', '1585726009.jpg', '<p>cash out 0.02</p>', '2020-04-01 01:26:49', '2020-04-01 01:26:49'),
+(2, 'U Cash', '1585727784.png', '<p>rk</p>', '2020-04-01 01:56:24', '2020-04-01 01:56:24');
+
 -- --------------------------------------------------------
 
 --
@@ -395,9 +455,26 @@ CREATE TABLE `products` (
   `status` int(11) NOT NULL DEFAULT '0',
   `sub_category_id` int(10) UNSIGNED NOT NULL,
   `brand_id` int(10) UNSIGNED NOT NULL,
+  `area_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `weight` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `weight_type_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `inside_dhaka` int(11) NOT NULL DEFAULT '0',
+  `outside_dhaka` int(11) NOT NULL DEFAULT '0',
+  `product_condition` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `code`, `price`, `discount`, `description`, `duration`, `status`, `sub_category_id`, `brand_id`, `area_id`, `supplier_id`, `weight`, `weight_type_id`, `quantity`, `inside_dhaka`, `outside_dhaka`, `product_condition`, `created_at`, `updated_at`) VALUES
+(1, 'nm', 'cd', 566, 0, '<p>sa</p>', 90, 0, 2, 1, 1, 1, '10', 1, 18, 0, 0, 'Used', '2020-03-31 09:50:35', '2020-03-31 09:50:35'),
+(2, 'nm', 'cd', 566, 0, '<p>sa</p>', 90, 0, 2, 1, 1, 1, '10', 1, 18, 0, 0, 'Used', '2020-03-31 10:56:13', '2020-03-31 10:56:13'),
+(3, 'nm', 'cd', 566, 0, '<p>sa</p>', 90, 0, 2, 1, 1, 1, '10', 1, 18, 0, 0, 'Used', '2020-03-31 10:57:04', '2020-03-31 10:57:04');
 
 -- --------------------------------------------------------
 
@@ -414,6 +491,13 @@ CREATE TABLE `product_images` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `product_images`
+--
+
+INSERT INTO `product_images` (`id`, `src`, `serial`, `product_id`, `created_at`, `updated_at`) VALUES
+(1, '1585673824.jpg', 1, 3, '2020-03-31 10:57:04', '2020-03-31 10:57:04');
+
 -- --------------------------------------------------------
 
 --
@@ -424,6 +508,21 @@ CREATE TABLE `product_payment_methods` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
   `payment_method_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_return_policies`
+--
+
+CREATE TABLE `product_return_policies` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `return_policy_id` int(10) UNSIGNED NOT NULL,
+  `day` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -462,6 +561,28 @@ CREATE TABLE `product_tags` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `return_policies`
+--
+
+CREATE TABLE `return_policies` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `day` int(11) NOT NULL,
+  `custom` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `return_policies`
+--
+
+INSERT INTO `return_policies` (`id`, `title`, `day`, `custom`, `created_at`, `updated_at`) VALUES
+(1, 'Returns accepted within 3 days, only for damaged or wrong products.', 3, 0, '2020-04-01 07:34:07', '2020-04-01 07:34:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sizes`
 --
 
@@ -471,6 +592,13 @@ CREATE TABLE `sizes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sizes`
+--
+
+INSERT INTO `sizes` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'xl', '2020-03-31 09:15:09', '2020-03-31 09:15:09');
 
 -- --------------------------------------------------------
 
@@ -521,6 +649,14 @@ CREATE TABLE `sub_categories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `sub_categories`
+--
+
+INSERT INTO `sub_categories` (`id`, `name`, `description`, `image`, `home`, `category_id`, `created_at`, `updated_at`) VALUES
+(1, 't', '<p>b</p>', '1585231023.jpg', 1, 7, '2020-03-26 07:57:03', '2020-03-26 07:57:03'),
+(2, 'Samsung', '<p>as</p>', '1585585852.jpg', 0, 8, '2020-03-30 10:30:52', '2020-03-30 10:30:52');
+
 -- --------------------------------------------------------
 
 --
@@ -534,6 +670,13 @@ CREATE TABLE `sub_districts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sub_districts`
+--
+
+INSERT INTO `sub_districts` (`id`, `name`, `district_id`, `created_at`, `updated_at`) VALUES
+(1, 'Mirpur', 1, '2020-03-30 08:08:45', '2020-03-30 08:08:45');
 
 -- --------------------------------------------------------
 
@@ -666,6 +809,33 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `type`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'sohan', 'admin@gmail.com', NULL, '$2y$10$Y7/KK.Hu4xrorU9YDM8xB.m0iVS2I0JHMRwN8StuXYg6esA2V9Zq6', 2, 'user.jpg', NULL, '2020-03-26 07:53:20', '2020-03-26 07:53:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weight_types`
+--
+
+CREATE TABLE `weight_types` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `weight_types`
+--
+
+INSERT INTO `weight_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'kg', '2020-03-31 09:09:50', '2020-03-31 09:09:50');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -738,6 +908,12 @@ ALTER TABLE `divisions`
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `medicines`
+--
+ALTER TABLE `medicines`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -828,6 +1004,14 @@ ALTER TABLE `product_payment_methods`
   ADD KEY `product_payment_methods_payment_method_id_index` (`payment_method_id`);
 
 --
+-- Indexes for table `product_return_policies`
+--
+ALTER TABLE `product_return_policies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_return_policies_product_id_index` (`product_id`),
+  ADD KEY `product_return_policies_return_policy_id_index` (`return_policy_id`);
+
+--
 -- Indexes for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
@@ -842,6 +1026,12 @@ ALTER TABLE `product_tags`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_tags_tag_id_index` (`tag_id`),
   ADD KEY `product_tags_product_id_index` (`product_id`);
+
+--
+-- Indexes for table `return_policies`
+--
+ALTER TABLE `return_policies`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sizes`
@@ -935,6 +1125,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `weight_types`
+--
+ALTER TABLE `weight_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -948,7 +1144,7 @@ ALTER TABLE `ads`
 -- AUTO_INCREMENT for table `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `boosts`
@@ -960,7 +1156,7 @@ ALTER TABLE `boosts`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `buyers`
@@ -972,13 +1168,13 @@ ALTER TABLE `buyers`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `color_products`
@@ -990,13 +1186,13 @@ ALTER TABLE `color_products`
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `divisions`
 --
 ALTER TABLE `divisions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1005,10 +1201,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `medicines`
+--
+ALTER TABLE `medicines`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `offers`
@@ -1044,30 +1246,36 @@ ALTER TABLE `order_payment_mehods`
 -- AUTO_INCREMENT for table `parent_categories`
 --
 ALTER TABLE `parent_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payment_methods`
 --
 ALTER TABLE `payment_methods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_payment_methods`
 --
 ALTER TABLE `product_payment_methods`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_return_policies`
+--
+ALTER TABLE `product_return_policies`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -1083,10 +1291,16 @@ ALTER TABLE `product_tags`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `return_policies`
+--
+ALTER TABLE `return_policies`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `size_products`
@@ -1104,13 +1318,13 @@ ALTER TABLE `sliders`
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sub_districts`
 --
 ALTER TABLE `sub_districts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -1158,7 +1372,13 @@ ALTER TABLE `themes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `weight_types`
+--
+ALTER TABLE `weight_types`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -1238,6 +1458,13 @@ ALTER TABLE `product_images`
 ALTER TABLE `product_payment_methods`
   ADD CONSTRAINT `product_payment_methods_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_payment_methods_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `product_return_policies`
+--
+ALTER TABLE `product_return_policies`
+  ADD CONSTRAINT `product_return_policies_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `product_return_policies_return_policy_id_foreign` FOREIGN KEY (`return_policy_id`) REFERENCES `return_policies` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `product_reviews`

@@ -4,6 +4,8 @@ use App\model\Brand;
 use App\model\Color;
 use App\model\Division;
 use App\model\ParentCategory;
+use App\model\PaymentMethod;
+use App\model\ReturnPolicy;
 use App\model\Size;
 use App\model\WeightType;
 use Illuminate\Support\Facades\Route;
@@ -56,13 +58,15 @@ Route::get('/create-product3',function (){
 })->name('create_product3');
 
 Route::get('/create-product4',function (){
-    return view('front-end.product.create_product4');
+    return view('front-end.product.create_product4',['methods'=>PaymentMethod::all(),'policies'=>ReturnPolicy::all()]);
 })->name('create_product4');
 
 Route::get('/product-details',function (){
     return view('front-end.product.product_details');
 })->name('product_details');
 
+Route::post('/create-product-final/{product}','SellerController@createProductFinal');
+Route::get('/create-product-success/{product}','SellerController@createProductSuccess');
 
 
 //Admin
@@ -154,3 +158,7 @@ Route::resource('/producttags', 'ProductTagController');
 Route::resource('/parentcategories', 'ParentCategoryController');                                               
                                                
 Route::post('add-product','SellerController@insertProduct');
+Route::resource('/returnpolicies', 'ReturnPolicyController');                                               
+                                               
+Route::resource('/ProductReturnPolicys', 'ProductReturnPolicyController');                                               
+                                               
