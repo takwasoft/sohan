@@ -62,23 +62,48 @@
                         <ul style='background-color:#fff;border:none;display:block' class='sub-menu1'>
                             <li><a href="#"  class="list-group-item active">District</a>
                                 <ul>
-                                    <li><a class="list-group-item megamenu-caret" href="#"> 	Dhaka</a></li>
+                                    <li><a class="list-group-item megamenu-caret" href="#">Dhaka</a></li>
                                     <li><a href="#" class="list-group-item megamenu-caret">Ghazipur</a>
-                                    
+
                                         <ul class='sub-menu2' style="background-color:#fff;border:none;display:block">
                                             <li><a href="#"  class="list-group-item active">Sub-District</a>
                                                 <ul>
                                                     <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}"> Gazipur Sadar Upazila</a>
-                                                    
+
+                                                        <ul class='sub-menu3' style="background-color:#fff;border:none;display:block">
+                                                            <li><a href="#"  class="list-group-item active">Area</a>
+                                                                <ul>
+                                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}">Lamchary</a>
+                                                                    </li>
+                                                                    <li><a href="#" class="list-group-item megamenu-caret">Samserabah</a></li>
+                                                                    <li><a href="#" class="list-group-item megamenu-caret">Chor camita</a></li>
+                                                                    <li><a href="#" class="list-group-item megamenu-caret"> Sonar bangla</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+
+                                                    </li>
+                                                    <li><a href="#" class="list-group-item megamenu-caret"> Kaliakair Upazila</a>
+                                                        
+                                                        <ul class='sub-menu3' style="background-color:#fff;border:none;">
+                                                            <li><a href="#"  class="list-group-item active">Area</a>
+                                                                <ul>
+                                                                    <li><a class="list-group-item megamenu-caret" href="{{route('create_product3')}}">Lamchary 5</a>
+                                                                    </li>
+                                                                    <li><a href="#" class="list-group-item megamenu-caret">Samserabah 5</a></li>
+                                                                    <li><a href="#" class="list-group-item megamenu-caret">Chor camita 5</a></li>
+                                                                    <li><a href="#" class="list-group-item megamenu-caret"> Sonar bangla 5</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
                                                     
                                                     </li>
-                                                    <li><a href="#" class="list-group-item megamenu-caret"> Kaliakair Upazila</a></li>
                                                     <li><a href="#" class="list-group-item megamenu-caret"> Kapasia Upazila</a></li>
                                                     <li><a href="#" class="list-group-item megamenu-caret"> Sreepur Upazila</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
-                                    
+
                                     </li>
                                     <li><a href="#" class="list-group-item megamenu-caret">Kishoreganj</a></li>
                                     <li><a href="#" class="list-group-item megamenu-caret">Manikganj</a></li>
@@ -91,13 +116,13 @@
                     Chittagong</a>
 
 					<ul style='background-color:#fff;border:none;' class='sub-menu1'>
-                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                        <li><a href="#"  class="list-group-item active">District</a>
                             <ul>
                                 <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
                                 <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a>
-                                
+
                                     <ul class='sub-menu2' style="background-color:#fff;border:none;">
-                                        <li><a href="#"  class="list-group-item active">Sub-Category</a>
+                                        <li><a href="#"  class="list-group-item active">Sub-District</a>
                                             <ul>
                                                 <li><a class="list-group-item megamenu-caret" href="#"> piash shirt</a></li>
                                                 <li><a href="#" class="list-group-item megamenu-caret"> piash pant</a></li>
@@ -106,7 +131,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                
+
                                 </li>
                                 <li><a href="#" class="list-group-item megamenu-caret"> piash t-shirt</a></li>
                                 <li><a href="#" class="list-group-item megamenu-caret"> piash shirt</a></li>
@@ -140,7 +165,7 @@
                                 <li><a class="list-group-item megamenu-caret" href="#">bangladeshi shirt</a></li>
                                 <li><a href="#" class="list-group-item megamenu-caret">bangladeshi pant</a></li>
                                 <li><a href="#" class="list-group-item megamenu-caret">bangladeshi t-shirt 55</a>
-                                    
+
                                     <ul class='sub-menu2' style="background-color:#fff;border:none;">
                                         <li><a href="#"  class="list-group-item active">Sub-Category</a>
                                             <ul>
@@ -151,7 +176,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                
+
                                 </li>
                                 <li><a href="#" class="list-group-item megamenu-caret">bangladeshi shirt</a></li>
                             </ul>

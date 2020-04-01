@@ -227,10 +227,46 @@
 
 .megamenu>ul>li>ul.sub-menu1>li>ul>li>ul.sub-menu2>li>ul>li {
     border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
 }
 
-.megamenu>ul>li>ul.sub-menu1>li>ul>li:hover ul {
+.megamenu>ul>li>ul.sub-menu1>li>ul>li:hover>ul {
     display: block;
+}
+
+
+/*sub menu three*/
+
+.megamenu>ul>li>ul.sub-menu1>li>ul>li>ul.sub-menu2>li>ul>li>ul.sub-menu3 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin: 0 15px;
+    list-style: none;
+    box-sizing: border-box;
+    width: 280px;
+}
+
+.megamenu>ul>li>ul.sub-menu1>li>ul>li>ul>li>ul>li>ul>li>a {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.megamenu>ul>li>ul.sub-menu1>li>ul>li>ul.sub-menu2>li>ul>li>ul>li>ul>li>a {
+    width: 100%;
+    padding: 10px;
+}
+
+.megamenu>ul>li>ul.sub-menu1>li>ul>li>ul.sub-menu2>li>ul>li>ul>li>ul>li>a {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.megamenu>ul>li>ul.sub-menu1>li>ul>li>ul.sub-menu2>li>ul>li>ul>li>ul>li {
+    border-bottom: 1px solid #ccc;
 }
 
 
@@ -323,6 +359,10 @@ Mobile style's
 }
 .megamenu .show-on-mobile {
     display: block;
+}
+
+}
+
 }
 
 }
