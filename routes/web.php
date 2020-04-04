@@ -216,6 +216,35 @@ Route::resource('/ProductReturnPolicys', 'ProductReturnPolicyController');
 
 
 
+Route::get('/facebook/redirect', 'SocialAuthController@redirect');
+Route::get('/facebook/callback', 'SocialAuthController@callback');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
