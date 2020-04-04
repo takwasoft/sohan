@@ -5,7 +5,7 @@
     <div class="container">
         <div class="col-md-3">
             <div class="list-group categories-list megamenu">
-				<ul>
+				<ul class='megamenu-5'>
 					<a class="list-group-item active">
 						<i class="fa fa-bars" aria-hidden="true"></i>Categories
 					</a>
@@ -218,14 +218,15 @@
 			<div class="product-slide">
 
 
-				<!-- single product  --->
+                <!-- single product  --->
+                @foreach ( $newProducts as  $newProduct)
 				<div class="product-item">
 					<div class="thumbnail">
-                        <a href="{{route('product_details')}}"><div class="product-thum-img"<a href="preview.html"><img src="{{asset('/')}}front-end/images/feature-pic4.jpg" alt="" /></a></div></a>
-						<h4>Lorem Ipsum is simply </h4>
+                        <a href="{{route('product_details',['id'=>$newProduct->id])}}"><div class="product-thum-img"<a href="preview.html"><img src="{{asset('/')}}/images/{{$newProduct->productImages[0]["src"]}}" alt="" /></a></div></a>
+						<h4>{{$newProduct->name}}</h4>
 						<div class="price-details">
 							<div class="price-number">
-								<p><span class="rupees">$679.87</span></p>
+								<p><span class="rupees">${{$newProduct->price}}</span></p>
 							</div>
 							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
@@ -233,58 +234,9 @@
 							<div class="clear"></div>
 						</div>
 					</div>
-				</div> <!-- end single product  --->
+                </div> <!-- end single product  --->
+                @endforeach
 
-								<!-- single product  --->
-				<div class="product-item">
-					<div class="thumbnail">
-                        <a href="product-details.html"><div class="product-thum-img"<a href="preview.html"><img src="{{asset('/')}}front-end/images/feature-pic4.jpg" alt="" /></a></div></a>
-						<h4>Lorem Ipsum is simply </h4>
-						<div class="price-details">
-							<div class="price-number">
-								<p><span class="rupees">$679.87</span></p>
-							</div>
-							<div class="add-cart">
-								<h4><a href="preview.html">Add to Cart</a></h4>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div> <!-- end single product  --->
-
-								<!-- single product  --->
-				<div class="product-item">
-					<div class="thumbnail">
-                        <a href="product-details.html"><div class="product-thum-img"<a href="preview.html"><img src="{{asset('/')}}front-end/images/feature-pic4.jpg" alt="" /></a></div></a>
-						<h4>Lorem Ipsum is simply </h4>
-						<div class="price-details">
-							<div class="price-number">
-								<p><span class="rupees">$679.87</span></p>
-							</div>
-							<div class="add-cart">
-								<h4><a href="preview.html">Add to Cart</a></h4>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div> <!-- end single product  --->
-
-								<!-- single product  --->
-				<div class="product-item">
-					<div class="thumbnail">
-                        <a href="product-details.html"><div class="product-thum-img"<a href="preview.html"><img src="{{asset('/')}}front-end/images/feature-pic4.jpg" alt="" /></a></div></a>
-						<h4>Lorem Ipsum is simply </h4>
-						<div class="price-details">
-							<div class="price-number">
-								<p><span class="rupees">$679.87</span></p>
-							</div>
-							<div class="add-cart">
-								<h4><a href="preview.html">Add to Cart</a></h4>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div> <!-- end single product  --->
 			</div>
 		</div>
 	</div>  <!-- end thum-product section  --->

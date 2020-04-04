@@ -8,10 +8,12 @@ class Product extends Model
 {
     
 protected $fillable = [
-'id','name','code','price','discount','description','duration','status',
+'id','name','code','price','discount','short_description','description','duration','status',
 'sub_category_id','brand_id','area_id','weight','weight_type_id','quantity','product_condition',"supplier_id"
 ];
-
+public function ProductImages(){
+    return $this->hasMany(ProductImage::class);
+}
 public function SubCategory(){
     return $this->belongsTo(SubCategory::class);
 }

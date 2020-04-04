@@ -9,6 +9,7 @@ use App\model\ReturnPolicy;
 use App\model\Size;
 use App\model\WeightType;
 use Illuminate\Support\Facades\Route;
+use App\model\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::get('/checkout1','CheckoutController@checkout1')->name('checkout1');
 Route::get('/checkout2','CheckoutController@checkout2')->name('checkout2');
 Route::get('/checkout3','CheckoutController@checkout3')->name('checkout3');
 Route::get('/checkout4','CheckoutController@checkout4')->name('checkout4');
- 
+
 
 //product section
 
@@ -61,8 +62,9 @@ Route::get('/create-product4',function (){
     return view('front-end.product.create_product4',['methods'=>PaymentMethod::all(),'policies'=>ReturnPolicy::all()]);
 })->name('create_product4');
 
-Route::get('/product-details',function (){
-    return view('front-end.product.product_details');
+Route::get('/product-details/{id}',function ($id){
+    $porduct=Product::find($id);
+    return view('front-end.product.product_details',['product' =>$porduct]);
 })->name('product_details');
 
 Route::post('/create-product-final/{product}','SellerController@createProductFinal');
@@ -82,83 +84,84 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::resource('/suppliers', 'SupplierController');                                               
-                                                                                           
-                                               
-Route::resource('/categories', 'CategoryController');//->middleware('is_admin');                                               
-                                               
-Route::resource('/subcategories', 'SubCategoryController');                                               
-                                               
-Route::resource('/brands', 'BrandController');                                               
-                                               
-Route::resource('/suppliers', 'SupplierController');                                               
-                                               
-Route::resource('/products', 'ProductController');                                               
-                                               
-Route::resource('/areas', 'AreaController');                                               
-                                               
-Route::resource('/subdistricts', 'SubDistrictController');                                               
-                                               
-Route::resource('/districts', 'DistrictController');                                               
-                                               
-Route::resource('/divisions', 'DivisionController');                                               
-                                               
-Route::resource('/paymentmethods', 'PaymentMethodController');                                               
-                                               
-Route::resource('/productpaymentmethods', 'ProductPaymentMethodController');                                               
-                                               
-                                               
-                                               
-Route::resource('/productImages', 'ProductImageController');                                               
-                                               
-Route::resource('/orders', 'OrderController');                                               
-                                               
-Route::resource('/orderLines', 'OrderLineController');                                               
-                                               
-Route::resource('/orderpaymentmehods', 'OrderPaymentMehodController');                                               
-                                               
-Route::resource('/supplierCategorys', 'SupplierCategoryController');                                               
-                                               
-Route::resource('/sizes', 'SizeController');                                               
-                                               
-Route::resource('/sizeProducts', 'SizeProductController');                                               
-                                               
-Route::resource('/colors', 'ColorController');                                               
-                                               
-Route::resource('/colorProducts', 'ColorProductController');                                               
-                                               
-Route::resource('/offers', 'OfferController');                                               
-                                               
-Route::resource('/offerproducts', 'OfferProductController');                                               
-                                               
-Route::resource('/sliders', 'SliderController');                                               
-                                               
-Route::resource('/ads', 'AdController');                                               
-                                               
-Route::resource('/boosts', 'BoostController');                                               
-                                               
-Route::resource('/themes', 'ThemeController');                                               
-                                               
-Route::resource('/buyers', 'BuyerController');                                               
-                                               
-Route::resource('/productreviews', 'ProductReviewController');                                               
-                                               
-Route::resource('/supplierreviews', 'SupplierReviewController');                                               
-                                               
-Route::resource('/supplierchats', 'SupplierChatController');                                               
-                                               
-Route::resource('/supplierfollows', 'SupplierFollowController');                                               
-                                               
-Route::resource('/tags', 'TagController');                            
-Route::resource('/weighttypes', 'WeightTypeController');                                               
+Route::resource('/suppliers', 'SupplierController');
 
-                                               
-Route::resource('/producttags', 'ProductTagController');                                               
-                                               
-Route::resource('/parentcategories', 'ParentCategoryController');                                               
-                                               
-Route::post('add-product','SellerController@insertProduct');
-Route::resource('/returnpolicies', 'ReturnPolicyController');                                               
-                                               
-Route::resource('/ProductReturnPolicys', 'ProductReturnPolicyController');                                               
-                                               
+
+Route::resource('/categories', 'CategoryController');//->middleware('is_admin');
+
+Route::resource('/subcategories', 'SubCategoryController');
+
+Route::resource('/brands', 'BrandController');
+
+Route::resource('/suppliers', 'SupplierController');
+
+Route::resource('/products', 'ProductController');
+
+Route::resource('/areas', 'AreaController');
+
+Route::resource('/subdistricts', 'SubDistrictController');
+
+Route::resource('/districts', 'DistrictController');
+
+Route::resource('/divisions', 'DivisionController');
+
+Route::resource('/paymentmethods', 'PaymentMethodController');
+
+Route::resource('/productpaymentmethods', 'ProductPaymentMethodController');
+
+
+
+Route::resource('/productImages', 'ProductImageController');
+
+Route::resource('/orders', 'OrderController');
+
+Route::resource('/orderLines', 'OrderLineController');
+
+Route::resource('/orderpaymentmehods', 'OrderPaymentMehodController');
+
+Route::resource('/supplierCategorys', 'SupplierCategoryController');
+
+Route::resource('/sizes', 'SizeController');
+
+Route::resource('/sizeProducts', 'SizeProductController');
+
+Route::resource('/colors', 'ColorController');
+
+Route::resource('/colorProducts', 'ColorProductController');
+
+Route::resource('/offers', 'OfferController');
+
+Route::resource('/offerproducts', 'OfferProductController');
+
+Route::resource('/sliders', 'SliderController');
+
+Route::resource('/ads', 'AdController');
+
+Route::resource('/boosts', 'BoostController');
+
+Route::resource('/themes', 'ThemeController');
+
+Route::resource('/buyers', 'BuyerController');
+
+Route::resource('/productreviews', 'ProductReviewController');
+
+Route::resource('/supplierreviews', 'SupplierReviewController');
+
+Route::resource('/supplierchats', 'SupplierChatController');
+
+Route::resource('/supplierfollows', 'SupplierFollowController');
+
+Route::resource('/tags', 'TagController');
+Route::resource('/weighttypes', 'WeightTypeController');
+
+
+Route::resource('/producttags', 'ProductTagController');
+
+Route::resource('/parentcategories', 'ParentCategoryController');
+
+Route::post('/add-product','SellerController@insertProduct');
+Route::resource('/returnpolicies', 'ReturnPolicyController');
+
+Route::post('/seller-signup','SellerController@seller_signup');
+
+Route::resource('/ProductReturnPolicys', 'ProductReturnPolicyController');

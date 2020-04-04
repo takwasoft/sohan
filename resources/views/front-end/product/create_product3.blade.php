@@ -156,9 +156,13 @@
 									<input name="code" type="text" class="form-control" id="name" placeholder="Insert Deal code">
 								
 							</div>
+							<div class="form-group">
+								<label for="name" class=" control-label">Short Description *</label>
+								<textarea name="short_description" class="textarea" rows="4"></textarea>
+							</div>
 
 							<div class="form-group">
-								<label for="name" class=" control-label">Description *</label>
+								<label for="name" class=" control-label">Long Description *</label>
 								<textarea name="description" class="textarea" rows="4"></textarea>
 							</div>
 

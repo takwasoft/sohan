@@ -79,39 +79,39 @@
                         </li>
                     </ul>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-paw" aria-hidden="true"></i>Shoes</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>Watches</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>Kids and babies</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-heart" aria-hidden="true"></i>Health and beauty</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-futbol-o" aria-hidden="true"></i>Sports</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-envira" aria-hidden="true"></i>House Hold</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-bullhorn" aria-hidden="true"></i>Others</a>
 				</li>
 				</ul>
             </div>
 			</ul>
-			
-			
+
+
 			<!--  category menu Show only max 992px  -->
 			<div class="list-group categories-list megamenu">
 				<ul>
@@ -166,40 +166,40 @@
                         </li>
                     </ul>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-paw" aria-hidden="true"></i>Shoes</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>Watches</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>Kids and babies</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-heart" aria-hidden="true"></i>Health and beauty</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-futbol-o" aria-hidden="true"></i>Sports</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-envira" aria-hidden="true"></i>House Hold</a>
 				</li>
-				
+
                 <li><a href="#" class="list-group-item">
                     <i class="fa fa-bullhorn" aria-hidden="true"></i>Others</a>
 				</li>
 				</ul>
             </div>
 			<!-- end category menu Show only max 992px  -->
-			
+
 		</div>
-		
+
 		<div class="col-md-11">
 			<ol class="breadcrumb">
 			  <li><a href="#">Home</a></li>
@@ -221,7 +221,7 @@
 					<div class="slides_container">
 						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-1.jpg" alt=" " width="100%";/></a>
 						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-2.jpg" alt=" " /></a>
-						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-3.jpg" alt=" " /></a>					
+						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-3.jpg" alt=" " /></a>
 						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-4.jpg" alt=" " /></a>
 						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-5.jpg" alt=" " /></a>
 						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-6.jpg" alt=" " /></a>
@@ -238,19 +238,19 @@
 						<div class="col-md-12 text-center">
 							<img src="{{asset('/')}}front-end/images/advertise/gp.gif" alt="" width="100%" />
 						</div>
-					
+
 					</div>
 				</div>
 			</div>   <!-- end product view  -->
-			
+
 			<div class="col-md-6">
-				<h3>LOREM IPSUM IS SIMPLY DUMMY</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-				<h4>Price : <span>$500</span></h4>
-				<h4>deal code : 0000</h4>
+				<h3>{{$product->name}}</h3>
+				<p>{!! $product->short_description !!}</p>
+				<h4>Price : <span>${{$product->price}}</span></h4>
+				<h4>deal code : {{$product->code}}</h4>
 				<hr>
 				<h4>Available Options :</h4>
-				
+
 				<form class="form-inline">
 					<div class="row">
 						<div class="col-xs-6">
@@ -264,7 +264,7 @@
 							</select>
 						  </div>
 						 </div>
-						 
+
 						 <div class="col-xs-6">
 						  <div class="form-group">
 							<label for="size">Size :</label>
@@ -295,7 +295,7 @@
 					</div>
 				</form>
 				<div class="clearfix"></div>
-				
+
 				<h4>Share Product :</h4>
 				<div class="social-media-group">
 					<a herf="#" class="facebook"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>
@@ -312,7 +312,7 @@
 						<a herf="#" ><i class="fa fa-signal " aria-hidden="true"></i>Add to Compare</a>
 					</div>
 				</div>
-			
+
 			</div>
 		<div class="container-fluied">
 			<div class="col-md-4">
@@ -326,15 +326,15 @@
 			<div class="col-md-8">
 				<h4>Returns Policy</h4>
 				<div class="return-policy">
-				<p>Returns accepted within 3 days, only for damaged or wrong products. 
+				<p>Returns accepted within 3 days, only for damaged or wrong products.
 				Return offered in the form of Cash refund or Product exchange. Buyer is
 				the responsible for the shipping fees.
 				</p>
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<div class="col-md-12 product-tabs margin-top-bottom">
 			<ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#home">PRODUCT DETAILS</a></li>
@@ -343,51 +343,16 @@
                 </ul>
                 <div class="tab-content">
 					<div id="home" class="tab-pane fade in active">
-                       <p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non 
-						tempor odio, sed faucibus arcu. Duis id convallis odio. Proin sit amet enim
-						scelerisque, convallis metus mollis, varius turpis.
-						</p>
-						<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non 
-						tempor odio, sed faucibus arcu. Duis id convallis odio. Proin sit amet enim
-						scelerisque, convallis metus mollis, varius turpis.
-						</p>
-						<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non 
-						tempor odio, sed faucibus arcu. Duis id convallis odio. Proin sit amet enim
-						scelerisque, convallis metus mollis, varius turpis.
-						</p>
-						<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non 
-						tempor odio, sed faucibus arcu. Duis id convallis odio. Proin sit amet enim
-						scelerisque, convallis metus mollis, varius turpis.
-						</p>
+                       <p>{!! $product->description !!}</p>
                     </div>  <!-- End home tab content  -->
-					
+
                     <div id="menu1" class="tab-pane fade">
                        <p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non 
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa,
+						venenatis sit amet lorem sit amet, dignissim laoreet tortor.
+						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra.
+						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa
+						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non
 						tempor odio, sed faucibus arcu. Duis id convallis odio. Proin sit amet enim
 						scelerisque, convallis metus mollis, varius turpis.
 						</p>
@@ -410,11 +375,11 @@
                     <div id="menu2" class="tab-pane fade">
                        <h4>Lorem ipsum Review by</h4>
 					   <p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa, 
-						venenatis sit amet lorem sit amet, dignissim laoreet tortor. 
-						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra. 
-						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa 
-						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non 
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed justo massa,
+						venenatis sit amet lorem sit amet, dignissim laoreet tortor.
+						Nunc iaculis ligula non dolor vulputate, a vulputate diam viverra.
+						Etiam egestas gravida lorem at varius. Suspendisse et tortor quis massa
+						rutrum eleifend non nec dui. Praesent luctus convallis urna. Phasellus non
 						tempor odio, sed faucibus arcu. Duis id convallis odio. Proin sit amet enim
 						scelerisque, convallis metus mollis, varius turpis.
 						</p>
@@ -439,10 +404,10 @@
 						</form>
                     </div>   <!-- End  tab content  -->
                 </div>  <!--- end Tab-content  ------>
-		
+
 			</div>
-			
-				
+
+
 		<div class="col-md-12">
 			<div class="top-heading">
 				<div class="col-md-6 col-sm-6 col-xs-6">
@@ -454,7 +419,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 				<!-- single product  --->
@@ -466,14 +431,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -483,14 +448,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -500,14 +465,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -517,7 +482,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -525,11 +490,11 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 		<!-- end thum-product section  --->
 		</div>
-	</div>  
-	
+	</div>
+
 	<!--- Right Aside  -->
 	<div class="col-md-3">
 		<div class="panel panel-default">
@@ -573,7 +538,7 @@
 					</div>
 				</div>
 				<hr>
-				
+
 				<div class="follow-profile-pic">
 				<p>This seller has <span>83 followers</span></p>
 					<img class="media-object" src="{{asset('/')}}front-end/images/profile-pic.jpg" alt="">
@@ -587,14 +552,14 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<h4> (35-60%) DISCOUNT</h4>
 				<img src="{{asset('/')}}front-end/images/new-pic4.jpg" alt="" width="100%" />
 			</div>
 		</div>
-		
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4>PRODUCTS</h4>
@@ -647,17 +612,17 @@
                         <h4><strong>$ 685.00 </strong> <small>&nbsp <del>$ 685.00</del></small></h4>
                     </div>
                 </div>
-				
-				
+
+
 			</div>
 		</div>   <!--- end product  ------>
-		
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4>NEWSLETTERS </h4>
 			</div>
 			<div class="panel-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				</p>
 				<div class="form-group">
 				<input type="email" class="form-control" placeholder="Email" /><br>
@@ -665,10 +630,10 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 	</div>  <!--- end aside  ------>
-	
+
 </div>
 </div>
 
@@ -705,7 +670,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 				<!-- single product  --->
@@ -717,14 +682,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -734,14 +699,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -751,14 +716,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -768,7 +733,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -776,11 +741,11 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
 
 
-	
+
 	<div class="full-width-ad">
 		<div class="container">
 			<div class="col-md-12 text-center">
@@ -788,7 +753,7 @@
 			</div>
 		</div>
 	</div>  <!-- end top-ad  --->
-	
+
 	<div class="container">
 		<div class="col-md-12">
 			<div class="top-heading">
@@ -801,7 +766,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="product-slide">
 				<!-- single product  --->
@@ -813,14 +778,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -830,14 +795,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -847,14 +812,14 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div> <!-- end single product  --->
-				
+
 				<!-- single product  --->
 				<div class="product-item">
 					<div class="thumbnail">
@@ -864,7 +829,7 @@
 							<div class="price-number">
 								<p><span class="rupees">$679.87</span></p>
 							</div>
-							<div class="add-cart">								
+							<div class="add-cart">
 								<h4><a href="preview.html">Add to Cart</a></h4>
 							</div>
 							<div class="clear"></div>
@@ -872,7 +837,7 @@
 					</div>
 				</div> <!-- end single product  --->
 			</div>
-		</div> 
+		</div>
 	</div>  <!-- end thum-product section  --->
 
 </main>

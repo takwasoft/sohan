@@ -67,7 +67,7 @@
     padding: 20px;
     position: absolute;
     z-index: 99;
-    left: 97%;
+    left: 100%;
     top: 9%;
     margin: -40px 0;
     list-style: none;
@@ -155,13 +155,14 @@
     padding: 1em 0;
 }
 
-.megamenu ul li:hover>ul {
+.megamenu ul.megamenu-5 li:hover>ul {
     display: block;
 }
 
-.megamenu ul ul ul li:hover>ul {
+
+/* .megamenu ul ul ul li:hover>ul {
     display: block;
-}
+} */
 
 .megamenu>ul>li>ul.sub-menu1 {
     width: 280px;
@@ -181,8 +182,8 @@
 }
 
 .megamenu>ul>li>ul.sub-menu1>li>ul>li {
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid #ccc;
     padding: 0px;
 }
 
@@ -226,13 +227,14 @@
 }
 
 .megamenu>ul>li>ul.sub-menu1>li>ul>li>ul.sub-menu2>li>ul>li {
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid #ccc;
 }
 
-.megamenu>ul>li>ul.sub-menu1>li>ul>li:hover>ul {
+
+/* .megamenu>ul>li>ul.sub-menu1>li>ul>li:hover>ul {
     display: block;
-}
+} */
 
 
 /*sub menu three*/

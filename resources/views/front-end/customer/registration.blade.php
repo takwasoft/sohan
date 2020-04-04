@@ -27,16 +27,16 @@
 				@csrf
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" name='name' class="form-control" id="name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" name='email' class="form-control" id="email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password">
-                    </div>
+                        <input name='password' type="password" class="form-control" id="password">
+                    </div>    
                     <div class="text-center">
                         <button type="submit" class="btn btn-my"><i class="fa fa-user-md"></i> Register</button>
                     </div>
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-body">

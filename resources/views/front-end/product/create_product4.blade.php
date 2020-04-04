@@ -161,7 +161,7 @@
 
 <div class="container">
 	<div class="col-xs-12 create-product-controls">
-		<a href="{{URL:to('/')}}/create-product-success/{{$id}}" class="btn btn-my">Skip</a>
+		<a href="{{URL::to('/')}}/create-product-success/{{$id}}" class="btn btn-my">Skip</a>
 		<button type="button" class="btn btn-my pull-right">Next</button>
 	</div>
 </div>

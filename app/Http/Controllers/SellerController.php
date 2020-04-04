@@ -8,8 +8,10 @@ use App\model\Product;
 use App\model\ProductImage;
 use App\model\ReturnPolicy;
 use App\model\SizeProduct;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Image;
+
 class SellerController extends Controller
 {
     public function home(){
@@ -55,5 +57,21 @@ class SellerController extends Controller
     }
     public function createProductSuccess(Product $product){
         
+    }
+
+
+    protected function seller_signup(Request $request)
+    {
+        $request->validate( [ 
+            'name' => 'required|string|max:255', 
+            'email' => 'required|string|max:255|email|unique:users', 
+            'password' => 'required|min:8', 
+        ]);
+
+        $input = $request->all(); 
+        $input['type']=3;
+        $input['password'] = bcrypt($input['password']); 
+        $user = User::create($input); 
+        return redirect('/customer-registration');
     }
 }

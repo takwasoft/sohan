@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\model\Product;
 
 use Illuminate\Http\Request;
+use DB;
+use Image;
 
 class ShotovaghController extends Controller
 {
     public function index(){
-        return view('front-end.home.home');
+         $newProducts=Product::all()->take(8);
+        return view('front-end.home.home',['newProducts'=> $newProducts]);
     }
 
     public function error(){
