@@ -71,6 +71,8 @@ Route::get('/product-details/{id}',function ($id){
 Route::post('/create-product-final/{product}','SellerController@createProductFinal');
 Route::get('/create-product-success/{product}','SellerController@createProductSuccess');
 
+Route::post('/user-login','SellerController@login');
+
 
 //Admin
 // Route::get('/admin',function (){
@@ -78,6 +80,9 @@ Route::get('/create-product-success/{product}','SellerController@createProductSu
 // });
 Route::get('/admin','AdminController@home');
 Route::get('/seller','SellerController@home');
+Route::get('/seller/update-profile','SupplierController@update_profile')->name('update_profile');
+Route::get('/seller/update-info','SupplierController@update_info')->name('update_info');
+Route::post('/seller/save-data','SupplierController@save_data')->name('save_data');
 
 Auth::routes();
 
