@@ -12,5 +12,8 @@ protected $fillable = [
 'color_id',
 'product_id'
 ];
-                    
+  
+public function Color(){
+    return $this->belongsTo(Color::class);
+}  
 }

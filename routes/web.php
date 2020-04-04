@@ -64,7 +64,8 @@ Route::get('/create-product4',function (){
 
 Route::get('/product-details/{id}',function ($id){
     $porduct=Product::find($id);
-    return view('front-end.product.product_details',['product' =>$porduct]);
+    
+    return view('front-end.product.product_details',['product' =>$porduct,'parentCategories'=>ParentCategory::all()]);
 })->name('product_details');
 
 Route::post('/create-product-final/{product}','SellerController@createProductFinal');
@@ -165,3 +166,58 @@ Route::resource('/returnpolicies', 'ReturnPolicyController');
 Route::post('/seller-signup','SellerController@seller_signup');
 
 Route::resource('/ProductReturnPolicys', 'ProductReturnPolicyController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/category/{name}','HomeController@categoryDetails');
+Route::get('/subcategory/{name}','HomeController@subCategoryDetails');
+Route::get('/type/{name}','HomeController@parentCategoryDetails');

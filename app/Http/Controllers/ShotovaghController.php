@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\model\ParentCategory;
 use App\model\Product;
 
 use Illuminate\Http\Request;
@@ -11,7 +13,8 @@ class ShotovaghController extends Controller
 {
     public function index(){
          $newProducts=Product::all()->take(8);
-        return view('front-end.home.home',['newProducts'=> $newProducts]);
+         $parentCategories= ParentCategory::all();
+        return view('front-end.home.home',['newProducts'=> $newProducts,'parentCategories'=>$parentCategories]);
     }
 
     public function error(){

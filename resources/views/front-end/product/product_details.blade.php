@@ -29,174 +29,34 @@
 				<i class="fa fa-bars" aria-hidden="true"></i>
 			</button>
 			<ul class="dropdown-menu">
-			<div class="list-group categories-list megamenu">
-				<ul>
-                <li><a href="#" class="list-group-item megamenu-caret">
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>Clothing</a>
-					<ul>
-                        <li><a href="#">Mens</a>
-                            <ul>
-                                <li><a href="#">shirt</a></li>
-                                <li><a href="#">pant</a></li>
-								<li><a href="#">t-shirt</a></li>
-								<li><a href="#">shirt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Women</a>
-                            <ul>
-                                <li><a href="#">shorts</a></li>
-                                <li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Deals of the week</a>
-                            <img src="{{asset('/')}}front-end/images/advertise/ad4.jpg" alt="" width="100%" />
-                        </li>
-                    </ul>
-				</li>
-				<li><a href="#" class="list-group-item megamenu-caret">
-                    <i class="fa fa-laptop" aria-hidden="true"></i>Electronics</a>
-					<ul>
-                        <li><a href="#">Mens</a>
-                            <ul>
-                                <li><a href="#">shirt</a></li>
-                                <li><a href="#">pant</a></li>
-								<li><a href="#">t-shirt</a></li>
-								<li><a href="#">shirt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Women</a>
-                            <ul>
-                                <li><a href="#">shorts</a></li>
-                                <li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Deals of the week</a>
-                            <img src="{{asset('/')}}front-end/images/advertise/ad4.jpg" alt="" width="100%" />
-                        </li>
-                    </ul>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-paw" aria-hidden="true"></i>Shoes</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>Watches</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i>Kids and babies</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-heart" aria-hidden="true"></i>Health and beauty</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-futbol-o" aria-hidden="true"></i>Sports</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-envira" aria-hidden="true"></i>House Hold</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-bullhorn" aria-hidden="true"></i>Others</a>
-				</li>
-				</ul>
-            </div>
+				<div class="list-group categories-list megamenu">
+					<ul class='megamenu-5'>
+						
+					@foreach ($parentCategories as $parentCategory)
+						<li><a href="{{URL::to('/type/')."/".$parentCategory->name}}" class="list-group-item megamenu-caret">
+						<i class="fa fa-shopping-bag" aria-hidden="true"></i>{{$parentCategory->name}}</a>
+						<ul>
+						   @foreach ($parentCategory->categories as $category)
+								<li><a href="{{URL::to('/category')."/".$category->name}}">{{$category->name}}</a>
+								<ul>
+									@foreach ($category->subCategories as $subCategory)
+										<li><a href="{{URL::to('/subcategory')."/".$subCategory->name}}">{{$subCategory->name}}</a></li>
+									@endforeach
+									
+								</ul>
+							</li>
+						   @endforeach
+							
+						</ul>
+					</li>
+					@endforeach
+	
+					</ul>
+				</div>
 			</ul>
 
 
-			<!--  category menu Show only max 992px  -->
-			<div class="list-group categories-list megamenu">
-				<ul>
-					<a class="list-group-item active">
-						<i class="fa fa-bars" aria-hidden="true"></i>Categories
-					</a>
-                <li><a href="#" class="list-group-item megamenu-caret">
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>Clothing</a>
-					<ul>
-                        <li><a href="#">Mens</a>
-                            <ul>
-                                <li><a href="#">shirt</a></li>
-                                <li><a href="#">pant</a></li>
-								<li><a href="#">t-shirt</a></li>
-								<li><a href="#">shirt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Women</a>
-                            <ul>
-                                <li><a href="#">shorts</a></li>
-                                <li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Deals of the week</a>
-                            <img src="{{asset('/')}}front-end/images/advertise/ad4.jpg" alt="" width="100%" />
-                        </li>
-                    </ul>
-				</li>
-				<li><a href="#" class="list-group-item megamenu-caret">
-                    <i class="fa fa-laptop" aria-hidden="true"></i>Electronics</a>
-					<ul>
-                        <li><a href="#">Mens</a>
-                            <ul>
-                                <li><a href="#">shirt</a></li>
-                                <li><a href="#">pant</a></li>
-								<li><a href="#">t-shirt</a></li>
-								<li><a href="#">shirt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Women</a>
-                            <ul>
-                                <li><a href="#">shorts</a></li>
-                                <li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-								<li><a href="#">kamiz</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Deals of the week</a>
-                            <img src="{{asset('/')}}front-end/images/advertise/ad4.jpg" alt="" width="100%" />
-                        </li>
-                    </ul>
-				</li>
 
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-paw" aria-hidden="true"></i>Shoes</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>Watches</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i>Kids and babies</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-heart" aria-hidden="true"></i>Health and beauty</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-futbol-o" aria-hidden="true"></i>Sports</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-envira" aria-hidden="true"></i>House Hold</a>
-				</li>
-
-                <li><a href="#" class="list-group-item">
-                    <i class="fa fa-bullhorn" aria-hidden="true"></i>Others</a>
-				</li>
-				</ul>
-            </div>
-			<!-- end category menu Show only max 992px  -->
 
 		</div>
 
@@ -219,19 +79,15 @@
 			<div class="col-md-6">
 				<div id="products">
 					<div class="slides_container">
-						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-1.jpg" alt=" " width="100%";/></a>
-						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-2.jpg" alt=" " /></a>
-						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-3.jpg" alt=" " /></a>
-						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-4.jpg" alt=" " /></a>
-						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-5.jpg" alt=" " /></a>
-						<a href="#" target="_blank"><img src="{{asset('/')}}front-end/images/productslide-6.jpg" alt=" " /></a>
+						@foreach ($product->productImages as $image)
+							<a href="#" target="_blank"><img src="{{asset('/')}}images/{{$image->src}}" alt=" " width="100%";/></a>
+						@endforeach
+						
 					</div>
 					<ul class="pagination">
-						<li><a href="#"><img src="{{asset('/')}}front-end/images/thumbnailslide-1.jpg" alt=" " /></a></li>
-						<li><a href="#"><img src="{{asset('/')}}front-end/images/thumbnailslide-2.jpg" alt=" " /></a></li>
-						<li><a href="#"><img src="{{asset('/')}}front-end/images/thumbnailslide-3.jpg" alt=" " /></a></li>
-						<li><a href="#"><img src="{{asset('/')}}front-end/images/thumbnailslide-4.jpg" alt=" " /></a></li>
-						<li><a href="#"><img src="{{asset('/')}}front-end/images/thumbnailslide-5.jpg" alt=" " /></a></li>
+					@foreach ($product->productImages as $image)
+						<li><a href="#"><img src="{{asset('/')}}images/{{$image->src}}" alt=" " /></a></li>
+					@endforeach
 					</ul>
 					<div class="clearfix"></div>
 					<div class="row">
@@ -257,10 +113,9 @@
 						  <div class="form-group">
 							<label for="color">Color :</label>
 							<select class="form-control" id="color" width="60px">
-							  <option>Red</option>
-							  <option>Green</option>
-							  <option>Blue</option>
-							  <option>White</option>
+							 @foreach ($product->colorProducts as $color)
+								 <option>{{$color->color->name}}</option>
+							 @endforeach
 							</select>
 						  </div>
 						 </div>
@@ -269,9 +124,9 @@
 						  <div class="form-group">
 							<label for="size">Size :</label>
 							<select class="form-control" id="size">
-							  <option>Large</option>
-							  <option>Medium</option>
-							  <option>Small</option>
+							@foreach ($product->sizeProducts as $size)
+								 <option>{{$size->size->name}}</option>
+							 @endforeach
 							</select>
 						  </div>
 						 </div>
@@ -509,7 +364,7 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <a href="#"><h4 class="media-heading">tanvir ismail</h4></a>
+                        <a href="#"><h4 class="media-heading">{{$product->supplier->name}}</h4></a>
                         <p><i class="fa fa-star" aria-hidden="true"></i>
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <i class="fa fa-star" aria-hidden="true"></i>

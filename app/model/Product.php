@@ -20,6 +20,7 @@ public function SubCategory(){
 public function Brand(){
     return $this->belongsTo(Brand::class);
 }     
+
 public function Area(){
     return $this->belongsTo(Area::class);
 }  
@@ -28,5 +29,11 @@ public function WeightType(){
 }       
 public function Supplier(){
     return $this->belongsTo(Supplier::class);
+}
+public function ColorProducts(){
+    return $this->hasMany(ColorProduct::class);
+}  
+public function SizeProducts(){
+    return $this->hasMany(SizeProduct::class);
 }  
 }
