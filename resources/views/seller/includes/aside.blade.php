@@ -24,12 +24,12 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <!-- menu-open -->
-          <li class="nav-item has-treeview  
+          <li class="nav-item has-treeview
             @if(in_array(explode('/',request()->path())[0],["products"]))
               menu-open
             @endif
           ">
-            <a href="#" class="nav-link 
+            <a href="#" class="nav-link
             @if(in_array(explode('/',request()->path())[0],["products"]))
               active
             @endif
@@ -42,7 +42,7 @@
             </a>
             <ul class="nav nav-treeview">
             <li class=" nav-item ">
-                <a href="{{URL::to('/')}}/products" class="nav-link 
+                <a href="{{URL::to('/')}}/products" class="nav-link
                 @if(explode('/',request()->path())[0]=="products")
                     active
                 @endif
@@ -51,11 +51,53 @@
                   <p>My Products</p>
                 </a>
               </li>
-             
+
             </ul>
           </li>
-          
-       
+
+          <li class="nav-item has-treeview
+          @if(in_array(explode('/',request()->path())[0],["profile"]))
+            menu-open
+          @endif
+        ">
+          <a href="#" class="nav-link
+          @if(in_array(explode('/',request()->path())[0],["profile"]))
+            active
+          @endif
+          ">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Profile
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+          <li class=" nav-item ">
+              <a href="{{route('update_profile')}}" class="nav-link
+              @if(explode('/',request()->path())[0]=="profile")
+                  active
+              @endif
+              ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Profile Update</p>
+              </a>
+            </li>
+
+            <li class=" nav-item ">
+              <a href="{{route('update_info')}}" class="nav-link
+              @if(explode('/',request()->path())[0]=="profile")
+                  active
+              @endif
+              ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Update info</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
